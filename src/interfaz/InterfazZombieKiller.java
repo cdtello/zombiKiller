@@ -39,8 +39,8 @@ public class InterfazZombieKiller extends JFrame {
 	 */
 	private ArmaDeFuego armaActual;
 	/**
-	 * Panel del menú principal cualquier botón muestra otro panel
-	 * representatitvo a él
+	 * Panel del menï¿½ principal cualquier botï¿½n muestra otro panel
+	 * representatitvo a ï¿½l
 	 */
 	private PanelMenu panelMenu;
 	/**
@@ -48,7 +48,7 @@ public class InterfazZombieKiller extends JFrame {
 	 */
 	private PanelCamp panelCampo;
 	/**
-	 * Panel que muestra las instrucciones de juego Muestra las estadísticas de
+	 * Panel que muestra las instrucciones de juego Muestra las estadï¿½sticas de
 	 * las armas
 	 */
 	private PanelComoJugar panelComoJugar;
@@ -57,7 +57,7 @@ public class InterfazZombieKiller extends JFrame {
 	 */
 	private PanelPuntajes panelPuntajes;
 	/**
-	 * Panel que muestra los créditos de las personas que participaron
+	 * Panel que muestra los crï¿½ditos de las personas que participaron
 	 */
 	private PanelCreditos panelCreditos;
 	/**
@@ -74,7 +74,7 @@ public class InterfazZombieKiller extends JFrame {
 	private Cursor cursorCuchillo;
 
 	/**
-	 * Constructor de la clase principal del juego Aquí se inicializan todos los
+	 * Constructor de la clase principal del juego Aquï¿½ se inicializan todos los
 	 * componentes necesarios para empezar a jugar
 	 */
 	public InterfazZombieKiller() {
@@ -93,7 +93,7 @@ public class InterfazZombieKiller extends JFrame {
 		panelCampo = new PanelCamp(this);
 		panelMenu = new PanelMenu(this);
 		panelComoJugar = new PanelComoJugar(this);
-		panelPuntajes = PanelPuntajes.getInstance(this);
+		panelPuntajes = new PanelPuntajes(this);
 		panelCreditos = new PanelCreditos(this);
 
 		add(panelMenu, BorderLayout.CENTER);
@@ -102,7 +102,7 @@ public class InterfazZombieKiller extends JFrame {
 		try {
 			campo.cargarPuntajes();
 		} catch (ClassNotFoundException e) {
-			JOptionPane.showMessageDialog(this, "Hubo un error al guardar los últimos puntajes");
+			JOptionPane.showMessageDialog(this, "Hubo un error al guardar los ï¿½ltimos puntajes");
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(this, "No se han encontrado puntajes anteriores");
 		}
@@ -127,7 +127,7 @@ public class InterfazZombieKiller extends JFrame {
 	public void iniciarNuevaPartida() {
 		if (campo.getEstadoJuego() != SurvivorCamp.SIN_PARTIDA) {
 			int respuesta = JOptionPane.showConfirmDialog(this,
-					"En este momento se encuentra en una partida, seguro que desea salir?", "Iniciar Nueva Partida",
+					"En este momento se encuentra en una partida, segudo que desea salir?", "Iniciar Nueva Partida",
 					JOptionPane.YES_NO_OPTION);
 			if (respuesta == JOptionPane.YES_OPTION) {
 				campo.setEstadoJuego(SurvivorCamp.SIN_PARTIDA);
@@ -139,7 +139,7 @@ public class InterfazZombieKiller extends JFrame {
 	}
 
 	/**
-	 * Método auxiliar que inicializa y actualiza la información en los
+	 * Mï¿½todo auxiliar que inicializa y actualiza la informaciï¿½n en los
 	 * componentes visibles
 	 */
 	private void partidaIniciada() {
@@ -164,9 +164,9 @@ public class InterfazZombieKiller extends JFrame {
 	}
 
 	/**
-	 * pregunta si en el PanelCamp se están cargando las imágenes
+	 * pregunta si en el PanelCamp se estï¿½n cargando las imï¿½genes
 	 * 
-	 * @return true si aún se están cargando
+	 * @return true si aï¿½n se estï¿½n cargando
 	 */
 	public boolean estaCargando() {
 		boolean pintando = false;
@@ -216,7 +216,7 @@ public class InterfazZombieKiller extends JFrame {
 	}
 
 	/**
-	 * Guarda la partida que está en curso
+	 * Guarda la partida que estï¿½ en curso
 	 */
 	public void guardarJuego() {
 		try {
@@ -243,8 +243,8 @@ public class InterfazZombieKiller extends JFrame {
 	/**
 	 * <pre></pre>
 	 * 
-	 * el juego no se encuentra pausado dispara el arma principal en la posición
-	 * pasada por parámetro
+	 * el juego no se encuentra pausado dispara el arma principal en la posiciï¿½n
+	 * pasada por parï¿½metro
 	 * 
 	 * @param posX
 	 * @param posY
@@ -346,7 +346,7 @@ public class InterfazZombieKiller extends JFrame {
 	}
 
 	/**
-	 * cambia el arma del personaje y actualiza aquí
+	 * cambia el arma del personaje y actualiza aquï¿½
 	 */
 	public void cambiarArma() {
 		campo.cambiarArma();
@@ -394,7 +394,7 @@ public class InterfazZombieKiller extends JFrame {
 
 	/**
 	 * <pre>
-	 * la posición en el eje Y está por debajo de la que el zombie ataca
+	 * la posiciï¿½n en el eje Y estï¿½ por debajo de la que el zombie ataca
 	 * </pre>
 	 * 
 	 * intenta acuchillar
@@ -423,7 +423,7 @@ public class InterfazZombieKiller extends JFrame {
 	}
 
 	/**
-	 * Muestra el Panel de Cómo jugar / Lo oculta
+	 * Muestra el Panel de Cï¿½mo jugar / Lo oculta
 	 */
 	public void mostrarComoJugar() {
 		if (panelMenu.isVisible()) {
@@ -452,7 +452,7 @@ public class InterfazZombieKiller extends JFrame {
 	}
 
 	/**
-	 * Muestra el Panel donde se encuentran los créditos / lo oculta
+	 * Muestra el Panel donde se encuentran los crï¿½ditos / lo oculta
 	 */
 	public void mostrarCreditos() {
 		if (panelMenu.isVisible()) {
@@ -466,34 +466,34 @@ public class InterfazZombieKiller extends JFrame {
 	}
 
 	/**
-	 * obtiene el número de referencia al arma que se muestra en el panelArmas
+	 * obtiene el nï¿½mero de referencia al arma que se muestra en el panelArmas
 	 * 
-	 * @return número de referencia
+	 * @return nï¿½mero de referencia
 	 */
 	public int darArmaMostrada() {
 		return campo.getArmaMostrada();
 	}
 
 	/**
-	 * Cambia el arma que se está viendo por el de la derecha
+	 * Cambia el arma que se estï¿½ viendo por el de la derecha
 	 * 
-	 * @return número de referencia al arma de la derecha
+	 * @return nï¿½mero de referencia al arma de la derecha
 	 */
 	public int cambiarArmaVisibleDerecha() {
 		return campo.moverArmaVisibleDerecha();
 	}
 
 	/**
-	 * Cambia el arma que se está viendo por el de la izquierda
+	 * Cambia el arma que se estï¿½ viendo por el de la izquierda
 	 * 
-	 * @return número de referencia al arma de la izquierda
+	 * @return nï¿½mero de referencia al arma de la izquierda
 	 */
 	public int cambiarArmaVisibleIzquierda() {
 		return campo.moverArmaVisibleIzquierda();
 	}
 
 	/**
-	 * Método llamado cuando el personaje muere para verificar si el jugador
+	 * Mï¿½todo llamado cuando el personaje muere para verificar si el jugador
 	 * desea seguir o no
 	 */
 	public void juegoTerminado() {
@@ -510,7 +510,7 @@ public class InterfazZombieKiller extends JFrame {
 					campo.aniadirMejoresPuntajes(nombrePlayer);
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(this,
-							"Error al guardar el puntaje, es posible que haya abierto el juego desde \"Acceso rápido\"");
+							"Error al guardar el puntaje, es posible que haya abierto el juego desde \"Acceso rï¿½pido\"");
 				} catch (NombreInvalidoException e) {
 					JOptionPane.showMessageDialog(this, e.getMessage());
 					juegoTerminado();
@@ -534,7 +534,7 @@ public class InterfazZombieKiller extends JFrame {
 	} 
 
 	/**
-	 * Método que se ejecuta cuando el Boss muere
+	 * Mï¿½todo que se ejecuta cuando el Boss muere
 	 */
 	public void victoria() {
 		String nombrePlayer = JOptionPane.showInputDialog(this,
@@ -546,7 +546,7 @@ public class InterfazZombieKiller extends JFrame {
 			campo.aniadirMejoresPuntajes(nombrePlayer);
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(this,
-					"Error al guardar el puntaje, es posible que haya abierto el juego desde \"Acceso rápido\"");
+					"Error al guardar el puntaje, es posible que haya abierto el juego desde \"Acceso rï¿½pido\"");
 		} catch (NombreInvalidoException e) {
 			JOptionPane.showMessageDialog(this, e.getMessage());
 			victoria();
@@ -560,21 +560,21 @@ public class InterfazZombieKiller extends JFrame {
 	}
 
 	/**
-	 * Llama al método de ordenar por bajas
+	 * Llama al mï¿½todo de ordenar por bajas
 	 */
 	public void ordenarPorBajas() {
 		panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorBajas());
 	}
 
 	/**
-	 * Llama al método de ordenar por bajas con tiro a la cabeza
+	 * Llama al mï¿½todo de ordenar por bajas con tiro a la cabeza
 	 */
 	public void ordenarPorHeadshot() {
 		panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorTirosALaCabeza());
 	}
 	
 	/**
-	 * Llama al método de ordenar por puntaje
+	 * Llama al mï¿½todo de ordenar por puntaje
 	 */
 	public void ordenarPorScore() {
 		panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorScore());
@@ -590,7 +590,5 @@ public class InterfazZombieKiller extends JFrame {
 			panelPuntajes.mostrarPuntajeDe(buscado);
 		}
 	}
-
-
 
 }

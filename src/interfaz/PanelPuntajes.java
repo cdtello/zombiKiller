@@ -39,11 +39,8 @@ public class PanelPuntajes extends JPanel implements ActionListener {
 	private JButton butFiltroScore;
 	private JButton butSalir;
 	private InterfazZombieKiller principal;
-	
-	private static PanelPuntajes instance;
-	
-	//se hace el constructor privado para implementar el singleton
-	private PanelPuntajes(InterfazZombieKiller inter) {
+
+	public PanelPuntajes(InterfazZombieKiller inter) {
 		principal = inter;
 		setBackground(Color.black);
 		Font f = new Font("Chiller", Font.BOLD, 26);
@@ -71,15 +68,6 @@ public class PanelPuntajes extends JPanel implements ActionListener {
 		add(titulo, BorderLayout.NORTH);
 		add(texto, BorderLayout.CENTER);
 		add(butSalir, BorderLayout.SOUTH);
-	}
-	//Se añande metodo get instance para completar el singleton del panelPuntajes
-	public static PanelPuntajes getInstance(InterfazZombieKiller iZombieKiller) {
-		PanelPuntajes panel = instance;
-        if (panel != null) {
-            return panel;
-        }
-        instance= new PanelPuntajes(iZombieKiller);
-        return instance;
 	}
 
 	public void actualizarPuntajes(ArrayList<Puntaje> scores) {
@@ -159,7 +147,7 @@ public class PanelPuntajes extends JPanel implements ActionListener {
 			generaryAgregarLabels(aMostrar);
 			updateUI();
 		} else
-			JOptionPane.showMessageDialog(this, "No se encontró el nombre buscado en los puntajes");
+			JOptionPane.showMessageDialog(this, "No se encontrï¿½ el nombre buscado en los puntajes");
 	}
 
 	@Override

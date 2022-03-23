@@ -14,14 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import estrategySort.SortBajas;
-import estrategySort.SortHeadshot;
-import estrategySort.SortPuntaje;
-import estrategySort.SortStrategy;
-import objectPool.ZombiePool;
-
-//public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
-public class SurvivorCamp implements Cloneable {
+public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 
 	/**
 	 * entero incambiable que representa los pixeles del ancho del juego
@@ -100,16 +93,11 @@ public class SurvivorCamp implements Cloneable {
 	 * mejoresPuntajes pero est�n ordenados por Score
 	 */
 	private Puntaje raizPuntajes;
-	
-	private ZombiePool zPool;
-	
-	private SortStrategy strategy;
 
 	/**
 	 * Constructor de la clase principal del mundo
 	 */
 	public SurvivorCamp() {
-		zPool= new ZombiePool();
 		personaje = new Personaje();
 		// aEliminar = new ArrayList<Zombie>();
 		estadoJuego = SIN_PARTIDA;
@@ -122,40 +110,8 @@ public class SurvivorCamp implements Cloneable {
 		zombNodoLejano.setAlFrente(zombNodoCercano);
 		zombNodoCercano.setAtras(zombNodoLejano);
 		mejoresPuntajes = new ArrayList<>();
-		establecerSortPuntaje();
-	}
-	
-	
-	/**
-	 * Establece la estrategia de ordenamiento por puntaje
-	 * 
-	 * 
-	 */
-	
-	public void establecerSortPuntaje() {
-		strategy = new SortPuntaje();
 	}
 
-	
-	/**
-	 * Establece la estrategia de ordenamiento por tiros a la cabeza
-	 * 
-	 * 
-	 */
-	
-	public void establecerSortHeadshot() {
-		strategy = new SortHeadshot();
-	}
-	
-	/**
-	 * Establece la estrategia de ordenamiento por bajas
-	 * 
-	 * 
-	 */
-	public void establecerSortBajas() {
-		strategy = new SortBajas();
-	}	
-	
 	/**
 	 * obtiene el estado actual del juego
 	 * 
@@ -244,9 +200,13 @@ public class SurvivorCamp implements Cloneable {
 			tipoZombie = (int) (Math.random() * 2);
 		else if (level == 6 || level == 9)
 			tipoZombie = 1;
-		
-		Zombie aGenerar = zPool.checkOut(level, zombNodoLejano, tipoZombie); 
-		
+		Zombie aGenerar;
+
+		if (tipoZombie == 1)
+			aGenerar = new Rastrero(level, zombNodoLejano);
+		else
+			aGenerar = new Caminante(level, zombNodoLejano);
+
 		aGenerar.introducirse(zombNodoLejano.getAlFrente(), zombNodoLejano);
 		cantidadZombiesGenerados++;
 		return aGenerar;
@@ -284,23 +244,16 @@ public class SurvivorCamp implements Cloneable {
 			if (actual.comprobarDisparo(posX, posY, personaje.getPrincipal().getDanio())) {
 				leDio = true;
 				personaje.getPrincipal().setEnsangrentada(true);
-				if (actual.getSalud() <= 0) {						
+				if (actual.getSalud() <= 0) {
 					personaje.aumentarScore(10 + actual.getSalud() * (-10));
-					if (actual.getEstadoActual().equals(Zombie.MURIENDO_HEADSHOT)) 
+					if (actual.getEstadoActual().equals(Zombie.MURIENDO_HEADSHOT))
 						personaje.aumentarTirosALaCabeza();
-										
 				}
 
 				personaje.setEnsangrentado(false);
 			}
-			actual = actual.getAtras();		
+			actual = actual.getAtras();
 		}
-		
-		if(actual.getEstadoActual()==actual.MURIENDO) {
-			actual.determinarDificultadZombie(rondaActual);
-			zPool.checkIn(actual);			
-		}
-		
 		if (jefe != null)
 			if (jefe.comprobarDisparo(posX, posY, personaje.getPrincipal().getDanio())) {
 				personaje.getPrincipal().setEnsangrentada(true);
@@ -767,8 +720,24 @@ public class SurvivorCamp implements Cloneable {
 	 * @return arreglo de puntajes
 	 */
 	public ArrayList<Puntaje> ordenarPuntajePorTirosALaCabeza() {
-		establecerSortHeadshot();
-		return strategy.ordenar(mejoresPuntajes);
+		for (int i = 0; i < mejoresPuntajes.size(); i++) {
+			Puntaje masHeadShot = mejoresPuntajes.get(i);
+			int posACambiar = i;
+			for (int j = i; j < mejoresPuntajes.size() - 1; j++) {
+				if (masHeadShot.getTirosALaCabeza() - mejoresPuntajes.get(j + 1).getTirosALaCabeza() < 0) {
+					masHeadShot = mejoresPuntajes.get(j + 1);
+					posACambiar = j + 1;
+				} else if (masHeadShot.getTirosALaCabeza() - mejoresPuntajes.get(j + 1).getTirosALaCabeza() == 0) {
+					if (masHeadShot.compareTo(mejoresPuntajes.get(j + 1)) < 0) {
+						masHeadShot = mejoresPuntajes.get(j + 1);
+						posACambiar = j + 1;
+					}
+				}
+			}
+			mejoresPuntajes.set(posACambiar, mejoresPuntajes.get(i));
+			mejoresPuntajes.set(i, masHeadShot);
+		}
+		return mejoresPuntajes;
 	}
 
 	/**
@@ -777,24 +746,35 @@ public class SurvivorCamp implements Cloneable {
 	 * @return arreglo de puntajes
 	 */
 	public ArrayList<Puntaje> ordenarPuntajePorBajas() {
-		establecerSortBajas();
-		return strategy.ordenar(mejoresPuntajes);
-		
+		for (int i = 0; i < mejoresPuntajes.size(); i++) {
+			Puntaje masKill = mejoresPuntajes.get(i);
+			int posACambiar = i;
+			for (int j = i; j < mejoresPuntajes.size() - 1; j++) {
+				if (compare(masKill, mejoresPuntajes.get(j + 1)) < 0) {
+					masKill = mejoresPuntajes.get(j + 1);
+					posACambiar = j + 1;
+				}
+			}
+			mejoresPuntajes.set(posACambiar, mejoresPuntajes.get(i));
+			mejoresPuntajes.set(i, masKill);
+		}
+		return mejoresPuntajes;
 	}
 
 	/**
-	 * crea un arreglo con el arbol binario usando el metodo inOrden
+	 * crea un arreglo con el �rbol binario usando el m�todo inOrden
 	 * 
 	 * @return arreglo de puntajes
 	 */
 	public ArrayList<Puntaje> ordenarPuntajePorScore() {
-		establecerSortPuntaje();
-		return strategy.ordenar(raizPuntajes);
-		
+		ArrayList ordenados = new ArrayList<>();
+		if (raizPuntajes != null)
+			raizPuntajes.generarListaInOrden(ordenados);
+		return ordenados;
 	}
 
 	/**
-	 * obtiene la raiz del arbol binario de Puntajes
+	 * obtiene la ra�z del �rbol binario de Puntajes
 	 * 
 	 * @return raizPuntajes
 	 */
@@ -802,13 +782,13 @@ public class SurvivorCamp implements Cloneable {
 		return raizPuntajes;
 	}
 
-	/*@Override
+	@Override
 	public int compare(Puntaje o1, Puntaje o2) {
 		int porBajas = o1.getBajas() - o2.getBajas();
 		if (porBajas != 0)
 			return porBajas;
 		return o1.compareTo(o2);
-	}*/
+	}
 
 	/**
 	 * busca el puntaje del nombre ingresado por par�metro con b�squeda binaria
