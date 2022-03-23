@@ -347,9 +347,7 @@ public class PanelCamp extends JPanel implements MouseListener, KeyListener {
 				actualizarEquipada(matador.getPrincipal());
 			} else if (e.getKeyCode() == KeyEvent.VK_SPACE && matador.getGranadas().getMunicion() > 0) {
 				principal.granadaLanzada();
-        System.out.println("Gra1");
 				labGranadas.setText("" + matador.getGranadas().getMunicion());
-        System.out.println("Gra2");
 			} 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SHIFT)
