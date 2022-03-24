@@ -95,11 +95,14 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 	 * mejoresPuntajes pero est�n ordenados por Score
 	 */
 	private Puntaje raizPuntajes;
+	
+	private ZombiePool zPool;
 
 	/**
 	 * Constructor de la clase principal del mundo
 	 */
 	public SurvivorCamp() {
+		zPool= new ZombiePool();
 		personaje = new Personaje();
 		// aEliminar = new ArrayList<Zombie>();
 		estadoJuego = SIN_PARTIDA;
@@ -205,10 +208,10 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 		Zombie aGenerar;
 
 		if (tipoZombie == 1)
-			aGenerar = new Rastrero(level, zombNodoLejano);
+			aGenerar = zPool.checkOutR(level, zombNodoLejano); //new Rastrero(level, zombNodoLejano);
 		else
-			aGenerar = new Caminante(level, zombNodoLejano);
-
+			aGenerar = zPool.checkOutC(level, zombNodoLejano); //new Caminante(level, zombNodoLejano);
+		
 		aGenerar.introducirse(zombNodoLejano.getAlFrente(), zombNodoLejano);
 		cantidadZombiesGenerados++;
 		return aGenerar;
@@ -246,16 +249,27 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 			if (actual.comprobarDisparo(posX, posY, personaje.getPrincipal().getDanio())) {
 				leDio = true;
 				personaje.getPrincipal().setEnsangrentada(true);
-				if (actual.getSalud() <= 0) {
+				if (actual.getSalud() <= 0) {						
 					personaje.aumentarScore(10 + actual.getSalud() * (-10));
-					if (actual.getEstadoActual().equals(Zombie.MURIENDO_HEADSHOT))
+					if (actual.getEstadoActual().equals(Zombie.MURIENDO_HEADSHOT)) 
 						personaje.aumentarTirosALaCabeza();
+										
 				}
 
 				personaje.setEnsangrentado(false);
 			}
-			actual = actual.getAtras();
+			actual = actual.getAtras();		
 		}
+		
+		if(actual.getEstadoActual()==actual.MURIENDO) {
+			if(actual.getClass()== Caminante.class) {
+				  zPool.checkInC((Caminante)actual,rondaActual);
+			}else
+			{
+				zPool.checkInR((Rastrero)actual,rondaActual);
+			}
+		}
+		
 		if (jefe != null)
 			if (jefe.comprobarDisparo(posX, posY, personaje.getPrincipal().getDanio())) {
 				personaje.getPrincipal().setEnsangrentada(true);

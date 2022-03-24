@@ -93,7 +93,7 @@ public class InterfazZombieKiller extends JFrame {
 		panelCampo = new PanelCamp(this);
 		panelMenu = new PanelMenu(this);
 		panelComoJugar = new PanelComoJugar(this);
-		panelPuntajes = new PanelPuntajes(this);
+		panelPuntajes = PanelPuntajes.getInstance(this);
 		panelCreditos = new PanelCreditos(this);
 
 		add(panelMenu, BorderLayout.CENTER);
