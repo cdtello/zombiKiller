@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import Abstract_Factory.ArmasConcretas.Cuchillo;
+import objectPool.ZombiePool;
 
 public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 
@@ -205,12 +206,8 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 			tipoZombie = (int) (Math.random() * 2);
 		else if (level == 6 || level == 9)
 			tipoZombie = 1;
-		Zombie aGenerar;
-
-		if (tipoZombie == 1)
-			aGenerar = zPool.checkOutR(level, zombNodoLejano); //new Rastrero(level, zombNodoLejano);
-		else
-			aGenerar = zPool.checkOutC(level, zombNodoLejano); //new Caminante(level, zombNodoLejano);
+		
+		Zombie aGenerar = zPool.checkOut(level, zombNodoLejano, tipoZombie); 
 		
 		aGenerar.introducirse(zombNodoLejano.getAlFrente(), zombNodoLejano);
 		cantidadZombiesGenerados++;
@@ -262,12 +259,8 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 		}
 		
 		if(actual.getEstadoActual()==actual.MURIENDO) {
-			if(actual.getClass()== Caminante.class) {
-				  zPool.checkInC((Caminante)actual,rondaActual);
-			}else
-			{
-				zPool.checkInR((Rastrero)actual,rondaActual);
-			}
+			actual.determinarDificultadZombie(rondaActual);
+			zPool.checkIn(actual);			
 		}
 		
 		if (jefe != null)
