@@ -1,7 +1,6 @@
 package interfaz;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -14,13 +13,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
 
-import javax.swing.DebugGraphics;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
+
+import flyWeight.IImgIconBMenu;
+import flyWeight.ImgIconBMenuFactory;
 import mundo.SurvivorCamp;
 
 public class PanelMenu extends JPanel implements KeyListener, ActionListener, MouseListener {
@@ -169,34 +170,34 @@ public class PanelMenu extends JPanel implements KeyListener, ActionListener, Mo
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		JButton but = (JButton)e.getComponent();
-		ImageIcon defaultIcon;
+		IImgIconBMenu imagenMenu;
 		if(but == butIniciarJuego) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/nuevo_p.png"));
-			butIniciarJuego.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butIniciarJuego.getActionCommand(), getClass().getResource("/img/Palabras/nuevo_p.png"));
+			imagenMenu.setIcono(butIniciarJuego);
 		}
 		else if(but == butCargar) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/cargar_p.png"));
-			butCargar.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butCargar.getActionCommand(), getClass().getResource("/img/Palabras/cargar_p.png"));
+			imagenMenu.setIcono(butCargar);
 		}
 		else if(but == butContinuar && butContinuar.isEnabled()) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/continuar_p.png"));
-			butContinuar.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butContinuar.getActionCommand(), getClass().getResource("/img/Palabras/continuar_p.png"));
+			imagenMenu.setIcono(butContinuar);
 		}
 		else if(but == butGuardar && butGuardar.isEnabled()) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/guardar_p.png"));
-			butGuardar.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butGuardar.getActionCommand(), getClass().getResource("/img/Palabras/guardar_p.png"));
+			imagenMenu.setIcono(butGuardar);
 		}
 		else if(but == butCreditos) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/creditos_p.png"));
-			butCreditos.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butCreditos.getActionCommand(), getClass().getResource("/img/Palabras/creditos_p.png"));
+			imagenMenu.setIcono(butCreditos);
 		}
 		else if(but == butComoJugar) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/como jugar_p.png"));
-			butComoJugar.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butComoJugar.getActionCommand(), getClass().getResource("/img/Palabras/jugar_p.png"));
+			imagenMenu.setIcono(butComoJugar);
 		}
 		else if(but == butPuntajes) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/puntajes_p.png"));
-			butPuntajes.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butPuntajes.getActionCommand(), getClass().getResource("/img/Palabras/puntajes_p.png"));
+			imagenMenu.setIcono(butPuntajes);
 		}
 	}
 
