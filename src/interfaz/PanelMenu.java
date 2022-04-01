@@ -81,7 +81,7 @@ public class PanelMenu extends JPanel implements KeyListener, ActionListener, Mo
 		aux = new JLabel();
 		add(aux);
 		butComoJugar = new JButton();
-		configurarBoton(butComoJugar, getClass().getResource("/img/Palabras/como jugar.png"), COMO_JUGAR);
+		configurarBoton(butComoJugar, getClass().getResource("/img/Palabras/como_jugar.png"), COMO_JUGAR);
 		add(butComoJugar);
 		
 		aux = new JLabel();
@@ -170,33 +170,33 @@ public class PanelMenu extends JPanel implements KeyListener, ActionListener, Mo
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		JButton but = (JButton)e.getComponent();
-		IImgIconBMenu imagenMenu;
+		IImgIconBMenu imagenMenu=null;
 		if(but == butIniciarJuego) {
-			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butIniciarJuego.getActionCommand(), getClass().getResource("/img/Palabras/nuevo_p.png"));
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/nuevo_p.png"));
 			imagenMenu.setIcono(butIniciarJuego);
 		}
 		else if(but == butCargar) {
-			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butCargar.getActionCommand(), getClass().getResource("/img/Palabras/cargar_p.png"));
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/cargar_p.png"));
 			imagenMenu.setIcono(butCargar);
 		}
 		else if(but == butContinuar && butContinuar.isEnabled()) {
-			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butContinuar.getActionCommand(), getClass().getResource("/img/Palabras/continuar_p.png"));
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/continuar_p.png"));
 			imagenMenu.setIcono(butContinuar);
 		}
 		else if(but == butGuardar && butGuardar.isEnabled()) {
-			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butGuardar.getActionCommand(), getClass().getResource("/img/Palabras/guardar_p.png"));
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/guardar_p.png"));
 			imagenMenu.setIcono(butGuardar);
 		}
 		else if(but == butCreditos) {
-			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butCreditos.getActionCommand(), getClass().getResource("/img/Palabras/creditos_p.png"));
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/creditos_p.png"));
 			imagenMenu.setIcono(butCreditos);
 		}
 		else if(but == butComoJugar) {
-			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butComoJugar.getActionCommand(), getClass().getResource("/img/Palabras/jugar_p.png"));
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/como_jugar_p.png"));
 			imagenMenu.setIcono(butComoJugar);
 		}
 		else if(but == butPuntajes) {
-			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(butPuntajes.getActionCommand(), getClass().getResource("/img/Palabras/puntajes_p.png"));
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/puntajes_p.png"));
 			imagenMenu.setIcono(butPuntajes);
 		}
 	}
@@ -204,34 +204,34 @@ public class PanelMenu extends JPanel implements KeyListener, ActionListener, Mo
 	@Override
 	public void mouseExited(MouseEvent e) {
 		JButton but = (JButton)e.getComponent();
-		ImageIcon defaultIcon;
+		IImgIconBMenu imagenMenu=null;
 		if(but == butIniciarJuego) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/nuevo.png"));
-			butIniciarJuego.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/nuevo.png"));
+			imagenMenu.setIcono(butIniciarJuego);
 		}
 		else if(but == butCargar) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/cargar.png"));
-			butCargar.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/cargar.png"));
+			imagenMenu.setIcono(butCargar);
 		}
 		else if(but == butContinuar) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/continuar.png"));
-			butContinuar.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/continuar.png"));
+			imagenMenu.setIcono(butContinuar);
 		}
 		else if(but == butGuardar) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/guardar.png"));
-			butGuardar.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/guardar.png"));
+			imagenMenu.setIcono(butGuardar);
 		}
 		else if(but == butCreditos) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/creditos.png"));
-			butCreditos.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/creditos.png"));
+			imagenMenu.setIcono(butCreditos);
 		}
 		else if(but == butComoJugar) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/como jugar.png"));
-			butComoJugar.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/como_jugar.png"));
+			imagenMenu.setIcono(butComoJugar);
 		}
 		else if(but == butPuntajes) {
-			defaultIcon = new ImageIcon(getClass().getResource("/img/Palabras/puntajes.png"));
-			butPuntajes.setIcon(defaultIcon);
+			imagenMenu= ImgIconBMenuFactory.getIsntanceImgBMenu(getClass().getResource("/img/Palabras/puntajes.png"));
+			imagenMenu.setIcono(butPuntajes);
 		}
 	}
 
