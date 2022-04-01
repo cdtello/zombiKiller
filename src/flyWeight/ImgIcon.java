@@ -5,10 +5,11 @@ import javax.swing.JButton;
 
 public class ImgIcon implements IImgIconBMenu{
 	
-	ImageIcon icono;
+	private ImageIcon icono;
+	
 	
 	public ImgIcon(ImageIcon i) {
-		icono=i;
+		this.icono=i;
 	}
 	
 	public void setIcono(JButton button) {

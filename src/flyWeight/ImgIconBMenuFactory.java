@@ -10,12 +10,14 @@ public class ImgIconBMenuFactory {
 	static Map<String,IImgIconBMenu> ImgIconBMenuMap=new HashMap<>();
 	
 	
-	public static IImgIconBMenu getIsntanceImgBMenu(String comando, java.net.URL ruta) {
-		IImgIconBMenu iconoN = ImgIconBMenuMap.get(comando);
+	public static IImgIconBMenu getIsntanceImgBMenu(java.net.URL ruta) {
+		IImgIconBMenu iconoN = null;
+		iconoN = ImgIconBMenuMap.get(ruta.getPath());
 		
 		if(iconoN==null) {
-			ImgIcon icon = new ImgIcon(new ImageIcon(ruta));
-			ImgIconBMenuMap.put(comando,icon);
+			
+			iconoN = new ImgIcon(new ImageIcon(ruta.getPath()));
+			ImgIconBMenuMap.put(ruta.getPath(),iconoN);
 		}
 		
 		return iconoN;
