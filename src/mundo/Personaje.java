@@ -8,6 +8,8 @@ import Abstract_Factory.ArmaNoFuegoFactory;
 import Abstract_Factory.ArmasFactory;
 import Abstract_Factory.ArmasConcretas.Cuchillo;
 import Abstract_Factory.ArmasConcretas.Granada;
+import interfaz.InterfazZombieKiller;
+import interfaz.PanelPuntajes;
 
 public class Personaje implements SerViviente, Serializable {
 
@@ -52,7 +54,7 @@ public class Personaje implements SerViviente, Serializable {
 	 */
 	private boolean ensangrentado;
 	
-	
+	private static Personaje instance;
 
 	/**
 	 * Constructor del personaje cada vez que se inicia una partida
@@ -69,6 +71,16 @@ public class Personaje implements SerViviente, Serializable {
 		armasFactory = new ArmaNoFuegoFactory();
 		cuchillo = armasFactory.createCuchillo();
 		// municion = principal.getLimBalas();
+	}
+	
+	
+	public static Personaje getInstance() {
+		Personaje panel = instance;
+        if (panel != null) {
+            return panel;
+        }
+        instance= new Personaje();
+        return instance;
 	}
 
 	/**

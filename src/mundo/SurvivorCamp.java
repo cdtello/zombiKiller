@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import Abstract_Factory.ArmasConcretas.Cuchillo;
+import interfaz.PanelPuntajes;
 import objectPool.ZombiePool;
 
 public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
@@ -104,7 +105,7 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 	 */
 	public SurvivorCamp() {
 		zPool= new ZombiePool();
-		personaje = new Personaje();
+		personaje = Personaje.getInstance();
 		// aEliminar = new ArrayList<Zombie>();
 		estadoJuego = SIN_PARTIDA;
 		rondaActual = 0;
