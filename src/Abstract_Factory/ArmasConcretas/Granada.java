@@ -1,9 +1,11 @@
-package mundo;
+package Abstract_Factory.ArmasConcretas;
+
+import Abstract_Factory.ArmaDeFuego;
 
 public class Granada extends ArmaDeFuego{
 
 	/**
-	 * valor incambiable que representa el daño causado por la granada
+	 * valor incambiable que representa el daï¿½o causado por la granada
 	 */
 	public static final byte DANIO = 6;
 	/**
@@ -12,7 +14,7 @@ public class Granada extends ArmaDeFuego{
 	private byte cantidad;
 
 	/**
-	 * Constructor de la granada con su respectiva cantidad y daño
+	 * Constructor de la granada con su respectiva cantidad y daï¿½o
 	 */
 	public Granada() {
 		super();

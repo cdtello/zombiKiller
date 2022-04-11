@@ -14,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import Abstract_Factory.ArmasConcretas.Cuchillo;
+
 public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 
 	/**
@@ -368,6 +370,7 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 		try {
 			ObjectInputStream oIS = new ObjectInputStream(new FileInputStream(archivoPersonaje));
 			Personaje personaje = (Personaje) oIS.readObject();
+      System.out.println("Close 2");
 			oIS.close();
 			cargarDatosCampo(carpeta, personaje);
 		} catch (IOException e) {
@@ -439,6 +442,7 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 			}
 			lineaActual = bR.readLine();
 		}
+    System.out.println("close surv");
 		bR.close();
 		int zombiesExcedidos = contadorZombiesEnPantalla + (personaje.getMatanza() % NUMERO_ZOMBIES_RONDA)
 				- NUMERO_ZOMBIES_RONDA;

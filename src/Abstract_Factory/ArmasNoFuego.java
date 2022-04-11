@@ -2,7 +2,7 @@ package Abstract_Factory;
 
 import mundo.Arma;
 
-public class ArmasNoFuego extends Arma{
+public abstract class ArmasNoFuego extends Arma{
 
 	@Override
 	public long calcularDescanso() {

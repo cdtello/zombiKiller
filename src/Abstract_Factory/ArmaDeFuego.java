@@ -1,4 +1,6 @@
-package mundo;
+package Abstract_Factory;
+
+import mundo.Arma;
 
 public abstract class ArmaDeFuego extends Arma{ 
 
@@ -8,11 +10,11 @@ public abstract class ArmaDeFuego extends Arma{
 	public static final String RECARGANDO = "recarga";
 
 	/**
-	 * valor numérico que representa el tiempo de bombeo o recarga
+	 * valor numï¿½rico que representa el tiempo de bombeo o recarga
 	 */
 	private short tBombeo;
 	/**
-	 * valor numérico que representa la cantidad de balas disponible
+	 * valor numï¿½rico que representa la cantidad de balas disponible
 	 */
 	private byte limBalas;
 	/**
@@ -20,7 +22,7 @@ public abstract class ArmaDeFuego extends Arma{
 	 */
 	private boolean ensangrentada;
 	/**
-	 * valor numérico que representa la munición del arma
+	 * valor numï¿½rico que representa la municiï¿½n del arma
 	 */
 	private byte municion;
 
@@ -42,7 +44,7 @@ public abstract class ArmaDeFuego extends Arma{
 		return descanso;
 	}
 	/**
-	 * cambia el límite de balas del arma en cuestión
+	 * cambia el lï¿½mite de balas del arma en cuestiï¿½n
 	 * @param limBalas
 	 */
 	protected void setLimBalas(byte limBalas) {
@@ -50,7 +52,7 @@ public abstract class ArmaDeFuego extends Arma{
 	}
 
 	/**
-	 * obtiene el límite de balas del arma presente
+	 * obtiene el lï¿½mite de balas del arma presente
 	 * @return limBalas
 	 */
 	public byte getLimBalas() {
@@ -74,7 +76,7 @@ public abstract class ArmaDeFuego extends Arma{
 	}
 
 	/**
-	 * pregunta si el arma presente acaba de darle a algún enemigo
+	 * pregunta si el arma presente acaba de darle a algï¿½n enemigo
 	 * @return ensangrentada
 	 */
 	public boolean isEnsangrentada() {

@@ -14,10 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import mundo.Cuchillo;
-import mundo.Granada;
-import mundo.M1911;
-import mundo.Remington;
+import Abstract_Factory.ArmasConcretas.Cuchillo;
+import Abstract_Factory.ArmasConcretas.Granada;
+import Abstract_Factory.ArmasConcretas.M1911;
+import Abstract_Factory.ArmasConcretas.Remington;
 
 public class PanelArmas extends JPanel implements ActionListener{
 
@@ -86,7 +86,7 @@ public class PanelArmas extends JPanel implements ActionListener{
 	public void inicializarAtributos () {
 		String[] atributos = new String[3];
 		int[] valores = new int [3];
-		atributos[0] = "Daño";
+		atributos[0] = "Daï¿½o";
 		atributos[1] = "Retroceso";
 		atributos[2] = "Tiempo de Carga";
 		
@@ -98,7 +98,7 @@ public class PanelArmas extends JPanel implements ActionListener{
 		
 		atributos = new String[3];
 		valores = new int [3];
-		atributos[0] = "Daño";
+		atributos[0] = "Dano";
 		atributos[1] = "Retroceso";
 		atributos[2] = "Tiempo de Carga";
 		
@@ -111,7 +111,7 @@ public class PanelArmas extends JPanel implements ActionListener{
 		
 		atributos = new String[1];
 		valores = new int [1];
-		atributos[0] = "Daño";
+		atributos[0] = "Daï¿½o";
 		
 		valores[0] = Granada.DANIO;
 		
@@ -120,7 +120,7 @@ public class PanelArmas extends JPanel implements ActionListener{
 		
 		atributos = new String[1];
 		valores = new int [1];
-		atributos[0] = "Daño";
+		atributos[0] = "Dano";
 		
 		valores[0] = Cuchillo.DANIO;
 		

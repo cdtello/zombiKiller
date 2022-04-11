@@ -11,16 +11,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import Abstract_Factory.ArmaDeFuego;
+import Abstract_Factory.ArmasConcretas.Remington;
 import hilo.HiloArma;
 import hilo.HiloBoss;
 import hilo.HiloEnemigo;
 import hilo.HiloGeneradorDeZombies;
 import hilo.HiloSonido;
-import mundo.ArmaDeFuego;
 import mundo.Boss;
 import mundo.NombreInvalidoException;
 import mundo.Puntaje;
-import mundo.Remington;
 import mundo.SurvivorCamp;
 import mundo.Zombie;
 
@@ -223,6 +223,7 @@ public class InterfazZombieKiller extends JFrame {
 			campo.guardarPartida();
 			JOptionPane.showMessageDialog(this, "Partida Guardada");
 		} catch (IOException e) {
+      System.out.println("Error ->"+ e);
 			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
 	}

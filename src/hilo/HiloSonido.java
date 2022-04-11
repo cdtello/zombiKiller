@@ -21,11 +21,15 @@ public class HiloSonido extends Thread {
 	}
 
 	@Override
-	public void run() {
-		BufferedInputStream bufInS = new BufferedInputStream(
-				getClass().getResourceAsStream("/sonidos/" + ruta + ".wav"));
+	public void run() {		
 		try {
-			AudioInputStream audInS = AudioSystem.getAudioInputStream(bufInS);
+      BufferedInputStream bufInS = new BufferedInputStream(
+				getClass().getResourceAsStream("/sonidos/" + ruta + ".wav"));
+      System.out.print("****** ERROR 1--->");
+      AudioInputStream audTest = AudioSystem.getAudioInputStream(bufInS);
+      System.out.print("****** ERROR 2--->");
+			AudioInputStream audInS = audTest;
+      System.out.print("****** ERROR 3--->");
 			sonido = AudioSystem.getClip();
 			sonido.open(audInS);
 			sonido.start();
@@ -40,12 +44,16 @@ public class HiloSonido extends Thread {
 					sleep(500);
 			sonido.close();
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
+      System.out.print("****** ERROR --->" + e);
 			e.printStackTrace();
 		}
 	}
 
 	public void detenerSonido() {
-		if (sonido!= null)
-		sonido.close();
+    System.out.println("Sonido -->"+ sonido);
+		if (sonido!= null){
+      sonido.close();
+    }
+		
 	}
 }

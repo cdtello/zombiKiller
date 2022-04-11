@@ -1,11 +1,11 @@
 package hilo;
 
+import Abstract_Factory.ArmaDeFuego;
+import Abstract_Factory.ArmasConcretas.Cuchillo;
+import Abstract_Factory.ArmasConcretas.Granada;
+import Abstract_Factory.ArmasConcretas.Remington;
 import interfaz.InterfazZombieKiller;
 import mundo.Arma;
-import mundo.ArmaDeFuego;
-import mundo.Cuchillo;
-import mundo.Granada;
-import mundo.Remington;
 
 public class HiloArma extends Thread {
 
@@ -23,7 +23,7 @@ public class HiloArma extends Thread {
 	public void run() {
 
 		try {
-			if (weapon instanceof ArmaDeFuego) {
+			if ((weapon instanceof ArmaDeFuego) && !(weapon instanceof Granada)) {
 				ArmaDeFuego deFuego = (ArmaDeFuego) weapon;
 				if (deFuego.isEnsangrentada()) {
 					sleep(100);

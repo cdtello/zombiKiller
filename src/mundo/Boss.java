@@ -1,5 +1,8 @@
 package mundo;
 
+import Abstract_Factory.ArmasConcretas.Granada;
+import Abstract_Factory.ArmasConcretas.Remington;
+
 public class Boss extends Enemigo implements SeMueveEnZigzag {
 
 	/**
@@ -24,15 +27,15 @@ public class Boss extends Enemigo implements SeMueveEnZigzag {
 	public static final int ANCHO_IMAGEN = 294;
 	
 	/**
-	 * valor numérico entero que representa la dirección o velocidad en el eje X
+	 * valor numï¿½rico entero que representa la direcciï¿½n o velocidad en el eje X
 	 */
 	private int direccionX;
 	/**
-	 * valor numérico entero que representa la dirección o velocidad en el eje Y
+	 * valor numï¿½rico entero que representa la direcciï¿½n o velocidad en el eje Y
 	 */	
 	private int direccionY;
 	/**
-	 * valor que representa la posición en el eje X del jefe
+	 * valor que representa la posiciï¿½n en el eje X del jefe
 	 */
 	private int posHorizontal;
 

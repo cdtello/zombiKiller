@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.plaf.basic.BasicRootPaneUI;
 
+import Abstract_Factory.ArmasConcretas.Granada;
+import Abstract_Factory.ArmasConcretas.Remington;
 import mundo.Boss;
-import mundo.Granada;
-import mundo.Remington;
 import mundo.Zombie;
 
 public class PanelAtributos extends JPanel {
@@ -40,7 +40,7 @@ public class PanelAtributos extends JPanel {
 			barValores[i].setBackground(Color.WHITE);
 			add(barValores[i]);
 			
-			if (atributos[i].equals("Daño"))
+			if (atributos[i].equals("Daï¿½o"))
 				barValores[i].setMaximum(Granada.DANIO);
 			else if (atributos[i].equals("Salud"))
 				barValores[i].setMaximum(Boss.SALUD);

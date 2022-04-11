@@ -1,9 +1,9 @@
 package Abstract_Factory;
 
-import mundo.Cuchillo;
-import mundo.Granada;
-import mundo.M1911;
-import mundo.Remington;
+import Abstract_Factory.ArmasConcretas.Cuchillo;
+import Abstract_Factory.ArmasConcretas.Granada;
+import Abstract_Factory.ArmasConcretas.M1911;
+import Abstract_Factory.ArmasConcretas.Remington;
 
 public interface ArmasFactory { 
 

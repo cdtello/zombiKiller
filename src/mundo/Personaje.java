@@ -2,9 +2,12 @@ package mundo;
 
 import java.io.Serializable;
 
+import Abstract_Factory.ArmaDeFuego;
 import Abstract_Factory.ArmaFuegoFactory;
 import Abstract_Factory.ArmaNoFuegoFactory;
 import Abstract_Factory.ArmasFactory;
+import Abstract_Factory.ArmasConcretas.Cuchillo;
+import Abstract_Factory.ArmasConcretas.Granada;
 
 public class Personaje implements SerViviente, Serializable {
 
@@ -25,7 +28,7 @@ public class Personaje implements SerViviente, Serializable {
 	 */
 	private int score;
 	/**
-	 * cantidad de bajas con el último disparo en la cabeza
+	 * cantidad de bajas con el ï¿½ltimo disparo en la cabeza
 	 */
 	private int headShots;
 	/**
@@ -33,7 +36,7 @@ public class Personaje implements SerViviente, Serializable {
 	 */
 	private ArmaDeFuego armaPrincipal;
 	/**
-	 * Arma que está guardada
+	 * Arma que estï¿½ guardada
 	 */
 	private ArmaDeFuego armaSecundaria;
 	/**
@@ -49,16 +52,18 @@ public class Personaje implements SerViviente, Serializable {
 	 */
 	private boolean ensangrentado;
 	
-	private ArmasFactory armasFactory;
+	
 
 	/**
 	 * Constructor del personaje cada vez que se inicia una partida
 	 * los valores no inicializados tienen por defecto 0
 	 */
 	public Personaje() { 
+    ArmasFactory armasFactory;
 		salud = SALUD;
 		armasFactory = new ArmaFuegoFactory();
 		granadas = armasFactory.createGranada();
+    System.out.println("Tiempo Carga -> " + granadas.getTiempoCarga());
 		armaPrincipal = armasFactory.createM1911();
 		armaSecundaria = armasFactory.createRemington();
 		armasFactory = new ArmaNoFuegoFactory();
@@ -84,14 +89,14 @@ public class Personaje implements SerViviente, Serializable {
 
 	/**
 	 * pregunta si el personaje se encuentra herido
-	 * @return true si acaba de ser arañado
+	 * @return true si acaba de ser araï¿½ado
 	 */
 	public boolean isEnsangrentado() {
 		return ensangrentado;
 	}
 
 	/**
-	 * cambia el estado de herida (sólo sirve para mostrar temporalmente el daño causado)
+	 * cambia el estado de herida (sï¿½lo sirve para mostrar temporalmente el daï¿½o causado)
 	 * @param ensangrentado
 	 */
 	public void setEnsangrentado(boolean ensangrentado) {
@@ -156,7 +161,7 @@ public class Personaje implements SerViviente, Serializable {
 	}
 
 	/**
-	 * se encarga de restaurar la munición del arma principal al máximo
+	 * se encarga de restaurar la municiï¿½n del arma principal al mï¿½ximo
 	 */
 	public void cargo() {
 		armaPrincipal.setMunicion(armaPrincipal.getLimBalas());
