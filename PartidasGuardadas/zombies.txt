@@ -1,7 +1,2 @@
 /salud/posX/posY/estado/frame/dirX/dirY
-<<<<<<< HEAD
-3_491_218_caminando_1_-1_3
-3_330_154_caminando_7_4_2
-=======
-5_292_149_caminando_3
->>>>>>> e6f25bf (commit inicial)
+3_286_142_caminando_2_3_1

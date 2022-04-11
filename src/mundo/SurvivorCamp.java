@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import Abstract_Factory.ArmasConcretas.Cuchillo;
+import Facade.PersistenceFacade;
 import interfaz.PanelPuntajes;
 import objectPool.ZombiePool;
 
@@ -344,11 +345,8 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 	 *             en caso de que haya ocurrido un error al guardar los datos
 	 */
 	public void cargarPuntajes() throws IOException, ClassNotFoundException {
-		File carpeta = new File(System.getProperty("user.dir") + "/PartidasGuardadas");
-		File archivoPuntajes = new File(carpeta.getAbsolutePath() + "/puntajes.txt");
-		ObjectInputStream oIS = new ObjectInputStream(new FileInputStream(archivoPuntajes));
-		Puntaje puntaje = (Puntaje) oIS.readObject();
-		actualizarPuntajes(puntaje);
+    PersistenceFacade facade = new PersistenceFacade();
+		actualizarPuntajes((Puntaje) facade.leer("puntajes"));
 	}
 
 	/**
@@ -373,14 +371,9 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 	 *             de cualquier tipo para mostrar en pantalla
 	 */
 	public SurvivorCamp cargarPartida() throws Exception {
-		File carpeta = new File(System.getProperty("user.dir") + "/PartidasGuardadas");
-		File archivoPersonaje = new File(carpeta.getAbsolutePath() + "/personaje.txt");
 		try {
-			ObjectInputStream oIS = new ObjectInputStream(new FileInputStream(archivoPersonaje));
-			Personaje personaje = (Personaje) oIS.readObject();
-      System.out.println("Close 2");
-			oIS.close();
-			cargarDatosCampo(carpeta, personaje);
+      PersistenceFacade facade = new PersistenceFacade();
+			cargarDatosCampo((Personaje) facade.leer("personaje"));
 		} catch (IOException e) {
 			throw new Exception(
 					"No se ha encontrado una partida guardada o es posible que haya abierto el juego desde \"Acceso r�pido\"");
@@ -401,9 +394,9 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 	 * @throws Exception
 	 *             si hay informaci�n inv�lida
 	 */
-	private void cargarDatosCampo(File carpeta, Personaje personaje) throws Exception {
-		File datosZombie = new File(carpeta.getAbsolutePath() + "/zombies.txt");
-		BufferedReader bR = new BufferedReader(new FileReader(datosZombie));
+	private void cargarDatosCampo(Personaje personaje) throws Exception {
+		PersistenceFacade facade = new PersistenceFacade();
+		BufferedReader bR = (BufferedReader) facade.leer("zombie");
 		int ronda = 0;
 		if (personaje.getMatanza() % NUMERO_ZOMBIES_RONDA == 0)
 			ronda = personaje.getMatanza() / NUMERO_ZOMBIES_RONDA;
@@ -450,7 +443,6 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 			}
 			lineaActual = bR.readLine();
 		}
-    System.out.println("close surv");
 		bR.close();
 		int zombiesExcedidos = contadorZombiesEnPantalla + (personaje.getMatanza() % NUMERO_ZOMBIES_RONDA)
 				- NUMERO_ZOMBIES_RONDA;
@@ -527,6 +519,18 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 			throw new DatosErroneosException();
 	}
 
+	private String crearDatosZombie(String datos, Zombie actual) {
+		if (actual.getEstadoActual().equals(Zombie.NODO))
+			return datos;
+		datos += "\n" + actual.getSalud() + "_" + actual.getPosX() + "_" + actual.getPosY() + "_"
+				+ actual.getEstadoActual() + "_" + actual.getFrameActual();
+		if (actual instanceof Caminante) {
+			datos += "_" + ((Caminante) actual).getDireccionX();
+			datos += "_" + ((Caminante) actual).getDireccionY();
+		}
+		return crearDatosZombie(datos, actual.getAtras());
+	}
+
 	/**
 	 * guarda la partida actual
 	 * 
@@ -535,19 +539,14 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 	 *             carpeta inv�lida
 	 */
 	public void guardarPartida() throws IOException {
-		File carpeta = new File(System.getProperty("user.dir") + "/PartidasGuardadas");
-		File archivoPersonaje = new File(carpeta.getAbsolutePath() + "/personaje.txt");
-		if (!carpeta.exists())
-			carpeta.mkdirs();
-		ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(archivoPersonaje));
-		escritor.writeObject(personaje);
-		escritor.close();
-		try {
-			guardarDatosCampo(carpeta);
-		} catch (IOException e) {
-			throw new IOException(
-					"Error al guardar el archivo, es posible que haya abierto el juego desde \"Acceso r�pido\"");
-		}
+		PersistenceFacade facade = new PersistenceFacade();
+    facade.guardar(personaje, "personaje");
+    String texto = "/salud/posX/posY/estado/frame/dirX/dirY";
+    if (jefe != null)
+    	texto += "\n" + jefe.getSalud();
+    else
+    	texto = crearDatosZombie(texto, zombNodoCercano.getAtras());
+    facade.guardar(texto, "zombie");
 	}
 
 	/**
@@ -717,13 +716,9 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 	 *             nuevas asociaciones
 	 */
 	private void guardarPuntajes() throws IOException {
-		File carpeta = new File(System.getProperty("user.dir") + "/PartidasGuardadas");
-		File archivoPuntajes = new File(carpeta.getAbsolutePath() + "/puntajes.txt");
-		if (!carpeta.exists())
-			carpeta.mkdirs();
-		ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(archivoPuntajes));
-		escritor.writeObject(raizPuntajes);
-		escritor.close();
+    PersistenceFacade facade = new PersistenceFacade();
+    facade.guardar(raizPuntajes, "puntajes");
+    System.out.println("Guardando Puntajes");
 	}
 
 	/**
