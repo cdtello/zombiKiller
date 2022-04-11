@@ -65,7 +65,6 @@ public class Personaje implements SerViviente, Serializable {
 		salud = SALUD;
 		armasFactory = new ArmaFuegoFactory();
 		granadas = armasFactory.createGranada();
-    System.out.println("Tiempo Carga -> " + granadas.getTiempoCarga());
 		armaPrincipal = armasFactory.createM1911();
 		armaSecundaria = armasFactory.createRemington();
 		armasFactory = new ArmaNoFuegoFactory();
