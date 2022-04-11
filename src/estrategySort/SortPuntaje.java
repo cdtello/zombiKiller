@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import mundo.Puntaje;
 
-public class SortPuntaje extends SortStrategy{
+public class SortPuntaje implements SortStrategy{
 
 	public ArrayList<Puntaje> ordenar(Puntaje raizPuntajes){
 		

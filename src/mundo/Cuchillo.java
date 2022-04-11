@@ -1,6 +1,7 @@
 package mundo;
 
-public class Cuchillo extends Arma{
+import Abstract_Factory.ArmasNoFuego; 
+public class Cuchillo extends ArmasNoFuego{  
 
 	/**
 	 * valor incambiable del daño que causa el cuchillo

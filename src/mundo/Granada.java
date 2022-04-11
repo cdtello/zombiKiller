@@ -1,6 +1,6 @@
 package mundo;
 
-public class Granada extends Arma  implements ArmaConMunicion{
+public class Granada extends ArmaDeFuego{
 
 	/**
 	 * valor incambiable que representa el daño causado por la granada
@@ -28,11 +28,11 @@ public class Granada extends Arma  implements ArmaConMunicion{
 			descanso = getTiempoCarga();
 		return descanso;
 	}
-	@Override
+
 	public byte getMunicion() {
 		return cantidad;
 	}
-	@Override
+	
 	public void setMunicion(byte municion) {
 		cantidad = municion;
 	}

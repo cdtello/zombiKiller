@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 import mundo.Puntaje;
 
-public class SortBajas extends SortStrategy implements Comparator<Puntaje>{
+public class SortBajas implements SortStrategy, Comparator<Puntaje>{
 
 	public ArrayList<Puntaje> ordenar(ArrayList<Puntaje> mejoresPuntajes){
 		for (int i = 0; i < mejoresPuntajes.size(); i++) {

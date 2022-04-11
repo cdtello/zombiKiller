@@ -2,6 +2,10 @@ package mundo;
 
 import java.io.Serializable;
 
+import Abstract_Factory.ArmaFuegoFactory;
+import Abstract_Factory.ArmaNoFuegoFactory;
+import Abstract_Factory.ArmasFactory;
+
 public class Personaje implements SerViviente, Serializable {
 
 	/**
@@ -44,17 +48,21 @@ public class Personaje implements SerViviente, Serializable {
 	 * estado temporal que indica que fue herido
 	 */
 	private boolean ensangrentado;
+	
+	private ArmasFactory armasFactory;
 
 	/**
 	 * Constructor del personaje cada vez que se inicia una partida
 	 * los valores no inicializados tienen por defecto 0
 	 */
-	public Personaje() {
+	public Personaje() { 
 		salud = SALUD;
-		granadas = new Granada();
-		armaPrincipal = new M1911();
-		armaSecundaria = new Remington();
-		cuchillo = new Cuchillo();
+		armasFactory = new ArmaFuegoFactory();
+		granadas = armasFactory.createGranada();
+		armaPrincipal = armasFactory.createM1911();
+		armaSecundaria = armasFactory.createRemington();
+		armasFactory = new ArmaNoFuegoFactory();
+		cuchillo = armasFactory.createCuchillo();
 		// municion = principal.getLimBalas();
 	}
 

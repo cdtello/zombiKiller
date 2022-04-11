@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import mundo.Puntaje;
 
-public class SortHeadshot extends SortStrategy{
+public class SortHeadshot implements SortStrategy{
 
 	public ArrayList<Puntaje> ordenar(ArrayList<Puntaje> mejoresPuntajes){
 		for (int i = 0; i < mejoresPuntajes.size(); i++) {

@@ -202,7 +202,7 @@ public class InterfazZombieKiller extends JFrame {
 			cambiarPuntero();
 			panelMenu.setVisible(false);
 			panelCampo.setVisible(true);
-			campo.setEstadoJuego(campo.EN_CURSO);
+			campo.setEstadoJuego(campo.EN_CURSO); 
 			add(panelCampo, BorderLayout.CENTER);
 			panelCampo.requestFocusInWindow();
 			HiloEnemigo hE = new HiloEnemigo(this, campo.getZombNodoCercano(), campo);
@@ -531,7 +531,7 @@ public class InterfazZombieKiller extends JFrame {
 			}
 		}
 		terminarGemi2();
-	}
+	} 
 
 	/**
 	 * Método que se ejecuta cuando el Boss muere
@@ -572,6 +572,13 @@ public class InterfazZombieKiller extends JFrame {
 	public void ordenarPorHeadshot() {
 		panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorTirosALaCabeza());
 	}
+	
+	/**
+	 * Llama al método de ordenar por puntaje
+	 */
+	public void ordenarPorScore() {
+		panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorScore());
+	}
 
 	/**
 	 * busca el mejor puntaje del nombre
@@ -584,11 +591,6 @@ public class InterfazZombieKiller extends JFrame {
 		}
 	}
 
-	/**
-	 * Llama al método de ordenar por puntaje
-	 */
-	public void ordenarPorScore() {
-		panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorScore());
-	}
+
 
 }

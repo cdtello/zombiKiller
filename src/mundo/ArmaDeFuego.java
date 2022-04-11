@@ -1,6 +1,6 @@
 package mundo;
 
-public abstract class ArmaDeFuego extends Arma implements ArmaConMunicion{
+public abstract class ArmaDeFuego extends Arma{ 
 
 	/**
 	 * Cadena de caracteres incambaible que representa el estado de recalentamiento o recarga de un arma de efuego
@@ -88,12 +88,14 @@ public abstract class ArmaDeFuego extends Arma implements ArmaConMunicion{
 	public void setEnsangrentada(boolean ensangrentada) {
 		this.ensangrentada = ensangrentada;
 	}
-	@Override
+	
 	public byte getMunicion() {
 		return municion;
 	}
-	@Override
 	public void setMunicion(byte municion) {
 		this.municion = municion;
 	}
+	
+	
+	
 }
