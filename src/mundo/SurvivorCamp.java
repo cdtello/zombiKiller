@@ -376,7 +376,7 @@ public class SurvivorCamp implements Cloneable {
 	 */
 	public void cargarPuntajes() throws IOException, ClassNotFoundException {
     PersistenceFacade facade = new PersistenceFacade();
-		actualizarPuntajes((Puntaje) facade.leer("puntajes"));
+		actualizarPuntajes((Puntaje) facade.leerPuntaje());
 	}
 
 	/**
@@ -403,7 +403,7 @@ public class SurvivorCamp implements Cloneable {
 	public SurvivorCamp cargarPartida() throws Exception {
 		try {
       PersistenceFacade facade = new PersistenceFacade();
-			cargarDatosCampo((Personaje) facade.leer("personaje"));
+			cargarDatosCampo((Personaje) facade.leerPersonaje());
 		} catch (IOException e) {
 			throw new Exception(
 					"No se ha encontrado una partida guardada o es posible que haya abierto el juego desde \"Acceso r�pido\"");
@@ -426,7 +426,7 @@ public class SurvivorCamp implements Cloneable {
 	 */
 	private void cargarDatosCampo(Personaje personaje) throws Exception {
 		PersistenceFacade facade = new PersistenceFacade();
-		BufferedReader bR = (BufferedReader) facade.leer("zombie");
+		BufferedReader bR = (BufferedReader) facade.leerZombie();
 		int ronda = 0;
 		if (personaje.getMatanza() % NUMERO_ZOMBIES_RONDA == 0)
 			ronda = personaje.getMatanza() / NUMERO_ZOMBIES_RONDA;
@@ -570,13 +570,13 @@ public class SurvivorCamp implements Cloneable {
 	 */
 	public void guardarPartida() throws IOException {
 		PersistenceFacade facade = new PersistenceFacade();
-    facade.guardar(personaje, "personaje");
+    facade.guardarPersonaje(personaje);
     String texto = "/salud/posX/posY/estado/frame/dirX/dirY";
     if (jefe != null)
     	texto += "\n" + jefe.getSalud();
     else
     	texto = crearDatosZombie(texto, zombNodoCercano.getAtras());
-    facade.guardar(texto, "zombie");
+    facade.guardarZombie(texto);
 	}
 
 	/**
@@ -747,8 +747,7 @@ public class SurvivorCamp implements Cloneable {
 	 */
 	private void guardarPuntajes() throws IOException {
     PersistenceFacade facade = new PersistenceFacade();
-    facade.guardar(raizPuntajes, "puntajes");
-    System.out.println("Guardando Puntajes");
+    facade.guardarPuntaje(raizPuntajes);
 	}
 
 	/**

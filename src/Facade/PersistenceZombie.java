@@ -6,12 +6,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-public class PersistenceZombi implements IPersistence{
+public class PersistenceZombie implements IPersistence{
 
   private File FILE_ZOMBIES;
   private File FOLDER_PARTIDA;
   
-  PersistenceZombi(){
+  PersistenceZombie(){
     FOLDER_PARTIDA = new File(System.getProperty("user.dir") + "/PartidasGuardadas");
     FILE_ZOMBIES   = new File(FOLDER_PARTIDA.getAbsolutePath() + "/zombies.txt");
   }

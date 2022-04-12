@@ -1,26 +1,38 @@
 package Facade;
 
 public class PersistenceFacade {
-  public void guardar(Object object, String format){
+  public void guardarZombie(Object object){
     IPersistence iPersistence;
-    if(format.equals("zombie")){
-      iPersistence = new PersistenceZombi();
-    }else if(format.equals("personaje")){
-      iPersistence = new PersistencePersonaje();
-    }else{
-      iPersistence = new PersistencePuntaje();
-    }
+    iPersistence = new PersistenceZombie();
     iPersistence.guardar(object);
   }
-  public Object leer(String format){
+  public void guardarPersonaje(Object object){
     IPersistence iPersistence;
-    if(format.equals("zombie")){
-      iPersistence = new PersistenceZombi();
-    }else if(format.equals("personaje")){
-      iPersistence = new PersistencePersonaje();
-    }else{
-      iPersistence = new PersistencePuntaje();
-    }    
+    iPersistence = new PersistencePersonaje();
+    iPersistence.guardar(object);
+  }
+  public void guardarPuntaje(Object object){
+    IPersistence iPersistence;
+    iPersistence = new PersistencePuntaje();
+    iPersistence.guardar(object);
+  }
+
+  public Object leerZombie(){
+    IPersistence iPersistence;
+    iPersistence = new PersistenceZombie();
     return iPersistence.leer();
   }
+
+  public Object leerPersonaje(){
+    IPersistence iPersistence;
+    iPersistence = new PersistencePersonaje();
+    return iPersistence.leer();
+  }
+
+  public Object leerPuntaje(){
+    IPersistence iPersistence;
+    iPersistence = new PersistencePuntaje();
+    return iPersistence.leer();
+  }
+
 }
