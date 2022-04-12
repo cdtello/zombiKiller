@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
 
 import Abstract_Factory.ArmaDeFuego;
 import Abstract_Factory.ArmasConcretas.Remington;
+import Memento.CareTaker;
+import Memento.Originator;
+import Memento.SurvivorCampOriginator;
 import hilo.HiloArma;
 import hilo.HiloBoss;
 import hilo.HiloEnemigo;
@@ -73,11 +76,15 @@ public class InterfazZombieKiller extends JFrame {
 	 */
 	private Cursor cursorCuchillo;
 
+  private Originator originator;
+  private CareTaker careTaker;
 	/**
 	 * Constructor de la clase principal del juego Aqu� se inicializan todos los
 	 * componentes necesarios para empezar a jugar
 	 */
 	public InterfazZombieKiller() {
+    CareTaker careTaker = new CareTaker();
+    Originator originator = new SurvivorCampOriginator(this.campo);
 		BorderLayout custom = new BorderLayout();
 		setLayout(custom);
 		ImageIcon laterales = new ImageIcon(getClass().getResource("/img/Fondo/iconozombie.png"));
@@ -190,7 +197,14 @@ public class InterfazZombieKiller extends JFrame {
 	public void cargarJuego() {
 		try {
 			Puntaje actuales = campo.getRaizPuntajes();
-			SurvivorCamp partida = campo.cargarPartida();
+      //**** memento en esta parte ****
+      originator.getStateFromMemento(careTaker.get(0));
+      originator.getState();
+			SurvivorCamp partida = (SurvivorCamp) originator.getState();;
+
+      
+
+      //**** **** **** **** **** ****
 			campo.setEstadoJuego(SurvivorCamp.SIN_PARTIDA);
 			campo = partida;
 			campo.actualizarPuntajes(actuales);
@@ -220,7 +234,13 @@ public class InterfazZombieKiller extends JFrame {
 	 */
 	public void guardarJuego() {
 		try {
+      // *** Guardando Juego ***
+      
+      originator.save(campo);
+      careTaker.add(originator.saveStateToMemento());
+
 			campo.guardarPartida();
+      // *** *** *** *** ***
 			JOptionPane.showMessageDialog(this, "Partida Guardada");
 		} catch (IOException e) {
       System.out.println("Error ->"+ e);

@@ -16,10 +16,14 @@ import java.util.Comparator;
 
 import Abstract_Factory.ArmasConcretas.Cuchillo;
 import Facade.PersistenceFacade;
+import estrategySort.SortBajas;
+import estrategySort.SortHeadshot;
+import estrategySort.SortPuntaje;
+import estrategySort.SortStrategy;
 import interfaz.PanelPuntajes;
 import objectPool.ZombiePool;
 
-public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
+public class SurvivorCamp implements Cloneable {
 
 	/**
 	 * entero incambiable que representa los pixeles del ancho del juego
@@ -101,6 +105,8 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 	
 	private ZombiePool zPool;
 
+  private SortStrategy strategy;
+
 	/**
 	 * Constructor de la clase principal del mundo
 	 */
@@ -118,8 +124,32 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 		zombNodoLejano.setAlFrente(zombNodoCercano);
 		zombNodoCercano.setAtras(zombNodoLejano);
 		mejoresPuntajes = new ArrayList<>();
+    establecerSortPuntaje();
 	}
+/*** Establece la estrategia de ordenamiento por puntaje
+     *
+     *
+     */
+  public void establecerSortPuntaje() {
+    strategy = new SortPuntaje();
+  }
 
+  /*** Establece la estrategia de ordenamiento por tiros a la cabeza
+   *
+   *
+   */
+  public void establecerSortHeadshot() {
+    strategy = new SortHeadshot();
+  }
+
+  /*** Establece la estrategia de ordenamiento por bajas
+   *
+   *
+   */
+
+  public void establecerSortBajas() {
+    strategy = new SortBajas();
+  }    
 	/**
 	 * obtiene el estado actual del juego
 	 * 
@@ -722,65 +752,6 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 	}
 
 	/**
-	 * ordena el arreglo con corde a la cantidad de kill con tiros a la cabeza
-	 * 
-	 * @return arreglo de puntajes
-	 */
-	public ArrayList<Puntaje> ordenarPuntajePorTirosALaCabeza() {
-		for (int i = 0; i < mejoresPuntajes.size(); i++) {
-			Puntaje masHeadShot = mejoresPuntajes.get(i);
-			int posACambiar = i;
-			for (int j = i; j < mejoresPuntajes.size() - 1; j++) {
-				if (masHeadShot.getTirosALaCabeza() - mejoresPuntajes.get(j + 1).getTirosALaCabeza() < 0) {
-					masHeadShot = mejoresPuntajes.get(j + 1);
-					posACambiar = j + 1;
-				} else if (masHeadShot.getTirosALaCabeza() - mejoresPuntajes.get(j + 1).getTirosALaCabeza() == 0) {
-					if (masHeadShot.compareTo(mejoresPuntajes.get(j + 1)) < 0) {
-						masHeadShot = mejoresPuntajes.get(j + 1);
-						posACambiar = j + 1;
-					}
-				}
-			}
-			mejoresPuntajes.set(posACambiar, mejoresPuntajes.get(i));
-			mejoresPuntajes.set(i, masHeadShot);
-		}
-		return mejoresPuntajes;
-	}
-
-	/**
-	 * ordena el arreglo con corde a la cantidad de kill
-	 * 
-	 * @return arreglo de puntajes
-	 */
-	public ArrayList<Puntaje> ordenarPuntajePorBajas() {
-		for (int i = 0; i < mejoresPuntajes.size(); i++) {
-			Puntaje masKill = mejoresPuntajes.get(i);
-			int posACambiar = i;
-			for (int j = i; j < mejoresPuntajes.size() - 1; j++) {
-				if (compare(masKill, mejoresPuntajes.get(j + 1)) < 0) {
-					masKill = mejoresPuntajes.get(j + 1);
-					posACambiar = j + 1;
-				}
-			}
-			mejoresPuntajes.set(posACambiar, mejoresPuntajes.get(i));
-			mejoresPuntajes.set(i, masKill);
-		}
-		return mejoresPuntajes;
-	}
-
-	/**
-	 * crea un arreglo con el �rbol binario usando el m�todo inOrden
-	 * 
-	 * @return arreglo de puntajes
-	 */
-	public ArrayList<Puntaje> ordenarPuntajePorScore() {
-		ArrayList ordenados = new ArrayList<>();
-		if (raizPuntajes != null)
-			raizPuntajes.generarListaInOrden(ordenados);
-		return ordenados;
-	}
-
-	/**
 	 * obtiene la ra�z del �rbol binario de Puntajes
 	 * 
 	 * @return raizPuntajes
@@ -789,13 +760,51 @@ public class SurvivorCamp implements Cloneable, Comparator<Puntaje> {
 		return raizPuntajes;
 	}
 
-	@Override
-	public int compare(Puntaje o1, Puntaje o2) {
-		int porBajas = o1.getBajas() - o2.getBajas();
-		if (porBajas != 0)
-			return porBajas;
-		return o1.compareTo(o2);
-	}
+  /*** ordena el arreglo con corde a la cantidad de kill con tiros a la cabeza
+     *
+     * @return arreglo de puntajes
+     */
+
+  public ArrayList<Puntaje> ordenarPuntajePorTirosALaCabeza() {
+    establecerSortHeadshot();
+    return strategy.ordenar(mejoresPuntajes);
+  }
+
+  /*** ordena el arreglo con corde a la cantidad de kill
+   *
+   * @return arreglo de puntajes
+   */
+
+  public ArrayList<Puntaje> ordenarPuntajePorBajas() {
+    establecerSortBajas();
+    return strategy.ordenar(mejoresPuntajes);
+  }
+
+
+
+
+
+  /**
+
+   * crea un arreglo con el arbol binario usando el metodo inOrden
+
+   *
+
+   * @return arreglo de puntajes
+
+   */
+
+  public ArrayList<Puntaje> ordenarPuntajePorScore() {
+    establecerSortPuntaje();
+    return strategy.ordenar(raizPuntajes);
+  }
+	//@Override
+	//public int compare(Puntaje o1, Puntaje o2) {
+	//	int porBajas = o1.getBajas() - o2.getBajas();
+	//	if (porBajas != 0)
+	//		return porBajas;
+	//	return o1.compareTo(o2);
+	//}
 
 	/**
 	 * busca el puntaje del nombre ingresado por par�metro con b�squeda binaria
