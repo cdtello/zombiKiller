@@ -26,6 +26,7 @@ import mundo.NombreInvalidoException;
 import mundo.Puntaje;
 import mundo.SurvivorCamp;
 import mundo.Zombie;
+import nullObject.ScoreFactory;
 
 public class InterfazZombieKiller extends JFrame {
 
@@ -462,7 +463,10 @@ public class InterfazZombieKiller extends JFrame {
 	 */
 	public void mostrarPuntajes() {
 		if (panelMenu.isVisible()) {
-			panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorScore());
+			//panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorScore());
+
+      ScoreFactory.getImageIcon(panelPuntajes, campo.ordenarPuntajePorScore()).actualizar();
+      
 			panelMenu.setVisible(false);
 			panelPuntajes.setVisible(true);
 			add(panelPuntajes, BorderLayout.CENTER);
@@ -584,21 +588,24 @@ public class InterfazZombieKiller extends JFrame {
 	 * Llama al m�todo de ordenar por bajas
 	 */
 	public void ordenarPorBajas() {
-		panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorBajas());
+		//panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorBajas());
+    ScoreFactory.getImageIcon(panelPuntajes, campo.ordenarPuntajePorBajas()).actualizar();
 	}
 
 	/**
 	 * Llama al m�todo de ordenar por bajas con tiro a la cabeza
 	 */
 	public void ordenarPorHeadshot() {
-		panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorTirosALaCabeza());
+		//panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorTirosALaCabeza());
+    ScoreFactory.getImageIcon(panelPuntajes, campo.ordenarPuntajePorTirosALaCabeza()).actualizar();
 	}
 	
 	/**
 	 * Llama al m�todo de ordenar por puntaje
 	 */
 	public void ordenarPorScore() {
-		panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorScore());
+		//panelPuntajes.actualizarPuntajes(campo.ordenarPuntajePorScore());
+    ScoreFactory.getImageIcon(panelPuntajes, campo.ordenarPuntajePorScore()).actualizar();
 	}
 
 	/**

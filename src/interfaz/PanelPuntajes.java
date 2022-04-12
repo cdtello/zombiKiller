@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -71,17 +72,21 @@ public class PanelPuntajes extends JPanel implements ActionListener {
 		add(butSalir, BorderLayout.SOUTH);
 	}
 
-	public void actualizarPuntajes(ArrayList<Puntaje> scores) {
-		if (scores.size() != 0) {
-			removeAll();
-			add(titulo, BorderLayout.NORTH);
-			generaryAgregarLabels(scores);
-			generarYAgregarBotones();
-			updateUI();
-		}
+	//public void actualizarPuntajes(ArrayList<Puntaje> scores) {
+	//	if (scores.size() != 0) {
+	//		removeAll();
+	//		add(titulo, BorderLayout.NORTH);
+	//		generaryAgregarLabels(scores);
+	//		generarYAgregarBotones();
+	//		updateUI();
+	//	}
+	//}
+  public JLabel getTitulo() {
+		return titulo;
 	}
 
-	private void generaryAgregarLabels(ArrayList<Puntaje> scores) {
+
+	public void generaryAgregarLabels(List<Puntaje> scores) {
 		labScores = new JLabel[scores.size()];
 		labNombres = new JLabel[scores.size()];
 		labHeadShots = new JLabel[scores.size()];
@@ -122,7 +127,7 @@ public class PanelPuntajes extends JPanel implements ActionListener {
 		add(auxPuntajes, BorderLayout.CENTER);
 	}
 	
-	private void generarYAgregarBotones () {
+	public void generarYAgregarBotones () {
 		JPanel auxBotones = new JPanel();
 		auxBotones.setBackground(Color.black);
 		auxBotones.setLayout(new GridLayout(5, 1));
