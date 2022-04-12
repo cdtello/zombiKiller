@@ -84,8 +84,7 @@ public class InterfazZombieKiller extends JFrame {
 	 * componentes necesarios para empezar a jugar
 	 */
 	public InterfazZombieKiller() {
-    CareTaker careTaker = new CareTaker();
-    Originator originator = new SurvivorCampOriginator(this.campo);
+    
 		BorderLayout custom = new BorderLayout();
 		setLayout(custom);
 		ImageIcon laterales = new ImageIcon(getClass().getResource("/img/Fondo/iconozombie.png"));
@@ -107,6 +106,10 @@ public class InterfazZombieKiller extends JFrame {
 		add(panelMenu, BorderLayout.CENTER);
 
 		campo = new SurvivorCamp();
+
+    careTaker = new CareTaker();
+    originator = new SurvivorCampOriginator(campo);
+
 		try {
 			campo.cargarPuntajes();
 		} catch (ClassNotFoundException e) {
@@ -199,10 +202,10 @@ public class InterfazZombieKiller extends JFrame {
 		try {
 			Puntaje actuales = campo.getRaizPuntajes();
       //**** memento en esta parte ****
-      //originator.getStateFromMemento(careTaker.get(0));
-      //originator.getState();
-			//SurvivorCamp partida = (SurvivorCamp) originator.getState();
-      SurvivorCamp partida = campo.cargarPartida();
+      originator.getStateFromMemento(careTaker.get(0));
+      originator.getState();
+			SurvivorCamp partida = (SurvivorCamp) originator.getState();
+      //SurvivorCamp partida = campo.cargarPartida();
       
 
       //**** **** **** **** **** ****
@@ -237,8 +240,8 @@ public class InterfazZombieKiller extends JFrame {
 		try {
       // *** Guardando Juego ***
       
-      //originator.save(campo);
-      //careTaker.add(originator.saveStateToMemento());
+      originator.save(campo);
+      careTaker.add(originator.saveStateToMemento());
 
 			campo.guardarPartida();
       // *** *** *** *** ***

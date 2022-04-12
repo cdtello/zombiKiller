@@ -501,7 +501,7 @@ public class SurvivorCamp implements Cloneable {
 		}
 	}
 
-	/**
+	/**  
 	 * conecta los zombies cargados a los nodos para que sean parte del juego
 	 * 
 	 * @param masCercano
