@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Decorator.NivelDecorator;
 import Facade.PersistenceFacade;
 import estrategySort.SortBajas;
 import estrategySort.SortHeadshot;
@@ -231,10 +232,13 @@ public class SurvivorCamp implements Cloneable {
 			tipoZombie = 1;
 		
 		Zombie aGenerar = zPool.checkOut(level, zombNodoLejano, tipoZombie); 
-		
-		aGenerar.introducirse(zombNodoLejano.getAlFrente(), zombNodoLejano);
+	
+    NivelDecorator zombieNivel = new NivelDecorator(aGenerar, level);
+    Zombie zombie = zombieNivel.getZombie();
+
+		zombie.introducirse(zombNodoLejano.getAlFrente(), zombNodoLejano);
 		cantidadZombiesGenerados++;
-		return aGenerar;
+		return zombie;
 	}
 
 	/**
@@ -282,7 +286,7 @@ public class SurvivorCamp implements Cloneable {
 		}
 		
 		if(actual.getEstadoActual()==actual.MURIENDO) {
-			actual.determinarDificultadZombie(rondaActual);
+			//actual.determinarDificultadZombie(rondaActual);
 			zPool.checkIn(actual);			
 		}
 		

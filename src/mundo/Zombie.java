@@ -56,7 +56,7 @@ public abstract class Zombie extends Enemigo {
 	 */
 	public static final String MURIENDO_INCENDIADO = "muriendoIncendiado";
 	/**
-	 * caracteres que representan el estado Nodo del zombie, éste no se cambia nunca
+	 * caracteres que representan el estado Nodo del zombie, ï¿½ste no se cambia nunca
 	 */
 	public static final String NODO = "nodo";
 
@@ -66,11 +66,11 @@ public abstract class Zombie extends Enemigo {
 	public static final int ANCHO_IMAGEN = 150;
 	
 	/**
-	 * zombie que se encuentra al frente o fue generado antes que éste
+	 * zombie que se encuentra al frente o fue generado antes que ï¿½ste
 	 */
 	private Zombie alFrente;
 	/**
-	 * zombie que se encuentra atrás o fue generado después que éste
+	 * zombie que se encuentra atrï¿½s o fue generado despuï¿½s que ï¿½ste
 	 */
 	private Zombie atras;
 
@@ -94,18 +94,18 @@ public abstract class Zombie extends Enemigo {
 		setSalud(salud);
 	}
 	/**
-	 * Constructor de un zombie recién generado con respecto a la ronda actual
+	 * Constructor de un zombie reciï¿½n generado con respecto a la ronda actual
 	 * @param nivel
 	 * @param atras
 	 */
 	public Zombie(short nivel, Zombie atras) {
-		determinarDificultadZombie(nivel);
+		//determinarDificultadZombie(nivel);
 		setEstadoActual(CAMINANDO);
 		this.atras = atras;
 	}
 
 	/**
-	 * método auxiliar que determina la dificultad de un zombie cuando se crea o se carga
+	 * mï¿½todo auxiliar que determina la dificultad de un zombie cuando se crea o se carga
 	 * @param ronda
 	 */
 	public void determinarDificultadZombie (int ronda) {
@@ -168,14 +168,14 @@ public abstract class Zombie extends Enemigo {
 	}
 
 	/**
-	 * obtiene el zombie que fue creado después del correspondiente
-	 * @return zombie de atrás
+	 * obtiene el zombie que fue creado despuï¿½s del correspondiente
+	 * @return zombie de atrï¿½s
 	 */
 	public Zombie getAtras() {
 		return atras;
 	}
 	/**
-	 * Cambia el zombie que se encuentra al atrás del correspondiente
+	 * Cambia el zombie que se encuentra al atrï¿½s del correspondiente
 	 * @param atras
 	 */
 	public void setAtras(Zombie atras) {
@@ -183,7 +183,7 @@ public abstract class Zombie extends Enemigo {
 	}
 
 	/**
-	 * se elimina a sí mismo cambiando las asociaciones de los zombies laterales
+	 * se elimina a sï¿½ mismo cambiando las asociaciones de los zombies laterales
 	 */
 	public void eliminarse () {
 		atras.alFrente = alFrente;
@@ -208,7 +208,7 @@ public abstract class Zombie extends Enemigo {
 	}
 
 	/**
-	 * entra en la lista enlazada relacionando los parámetros zombie atrás y al frente
+	 * entra en la lista enlazada relacionando los parï¿½metros zombie atrï¿½s y al frente
 	 * @param zombAlFrente
 	 * @param zombAtras
 	 */
