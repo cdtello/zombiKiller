@@ -5,39 +5,39 @@ import java.util.Formatter;
 
 public abstract class Zombie extends Enemigo {
 	
-	/**
-	 * valor incambiable de la lentitud rango 1
-	 */
+	///**
+	// * valor incambiable de la lentitud rango 1
+	// */
 	public static final short LENTITUD1 = 50;
-	/**
-	 * valor incambiable de la lentitud rango 2
-	 */
-	public static final short LENTITUD2 = 45;
-	/**
-	 * valor incambiable de la lentitud rango 3
-	 */
-	public static final short LENTITUD3 = 40;
-	/**
-	 * valor incambiable de la lentitud rango 4
-	 */
-	public static final short LENTITUD4 = 30;
+	///**
+	// * valor incambiable de la lentitud rango 2
+	// */
+	//public static final short LENTITUD2 = 45;
+	///**
+	// * valor incambiable de la lentitud rango 3
+	// */
+	//public static final short LENTITUD3 = 40;
+	///**
+	// * valor incambiable de la lentitud rango 4
+	// */
+	//public static final short LENTITUD4 = 30;
 	
-	/**
-	 * valor incambiable de la salud rango 1
-	 */
-	public static final byte SALUD1 = 3;
-	/**
-	 * valor incambiable de la salud rango 2
-	 */
-	public static final byte SALUD2 = 5;
-	/**
-	 * valor incambiable de la salud rango 3
-	 */
-	public static final byte SALUD3 = 6;
-	/**
-	 * valor incambiable de la salud rango 4
-	 */
-	public static final byte SALUD4 = 8;
+	///**
+	// * valor incambiable de la salud rango 1
+	// */
+	//public static final byte SALUD1 = 3;
+	///**
+	// * valor incambiable de la salud rango 2
+	// */
+	//public static final byte SALUD2 = 5;
+	///**
+	// * valor incambiable de la salud rango 3
+	// */
+	//public static final byte SALUD3 = 6;
+	///**
+	// * valor incambiable de la salud rango 4
+	// */
+	//public static final byte SALUD4 = 8;
 	
 	/**
 	 * caracteres que representan el estado Caminando del zombie
@@ -90,7 +90,7 @@ public abstract class Zombie extends Enemigo {
 	 */
 	public Zombie (int posY, String estadoActual, byte frameActual, byte salud, int ronda) {
 		super(posY, estadoActual, frameActual);
-		determinarDificultadZombie(ronda);
+		//determinarDificultadZombie(ronda);
 		setSalud(salud);
 	}
 	/**
@@ -108,50 +108,50 @@ public abstract class Zombie extends Enemigo {
 	 * m�todo auxiliar que determina la dificultad de un zombie cuando se crea o se carga
 	 * @param ronda
 	 */
-	public void determinarDificultadZombie (int ronda) {
-		switch (ronda) {
-		case 9:
-			setLentitud(LENTITUD3);
-			setSalud(SALUD4);
-			break;
-		case 8:
-			setLentitud(LENTITUD3);
-			setSalud(SALUD4);
-			break;
-		case 7:
-			setLentitud(LENTITUD4);
-			setSalud(SALUD2);
-			break;
-		case 6:
-			setLentitud(LENTITUD3);
-			setSalud(SALUD3);
-			break;
-		case 5:
-			setLentitud(LENTITUD3);
-			setSalud(SALUD2);
-			break;
-		case 4:
-			setLentitud(LENTITUD3);
-			setSalud(SALUD2);
-			break;
-		case 3:
-			setLentitud(LENTITUD2);
-			setSalud(SALUD2);
-			break;
-		case 2:
-			setLentitud(LENTITUD1);
-			setSalud(SALUD2);
-			break;
-		case 1:
-			setLentitud(LENTITUD1);
-			setSalud(SALUD1);
-			break;
-		default:
-			setLentitud(LENTITUD1);
-			setSalud(SALUD1);
-			break;
-		}
-	}
+	//public void determinarDificultadZombie (int ronda) {
+	//	switch (ronda) {
+	//	case 9:
+	//		setLentitud(LENTITUD3);
+	//		setSalud(SALUD4);
+	//		break;
+	//	case 8:
+	//		setLentitud(LENTITUD3);
+	//		setSalud(SALUD4);
+	//		break;
+	//	case 7:
+	//		setLentitud(LENTITUD4);
+	//		setSalud(SALUD2);
+	//		break;
+	//	case 6:
+	//		setLentitud(LENTITUD3);
+	//		setSalud(SALUD3);
+	//		break;
+	//	case 5:
+	//		setLentitud(LENTITUD3);
+	//		setSalud(SALUD2);
+	//		break;
+	//	case 4:
+	//		setLentitud(LENTITUD3);
+	//		setSalud(SALUD2);
+	//		break;
+	//	case 3:
+	//		setLentitud(LENTITUD2);
+	//		setSalud(SALUD2);
+	//		break;
+	//	case 2:
+	//		setLentitud(LENTITUD1);
+	//		setSalud(SALUD2);
+	//		break;
+	//	case 1:
+	//		setLentitud(LENTITUD1);
+	//		setSalud(SALUD1);
+	//		break;
+	//	default:
+	//		setLentitud(LENTITUD1);
+	//		setSalud(SALUD1);
+	//		break;
+	//	}
+	//}
 	/**
 	 * obtiene el zombie que fue creado antes que el correspondiente
 	 * @return
