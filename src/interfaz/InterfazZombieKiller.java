@@ -244,10 +244,10 @@ public class InterfazZombieKiller extends JFrame {
       careTaker.add(originator.createMemento());
 
       
-			campo.guardarPartida();
+			//campo.guardarPartida();
       // *** *** *** *** ***
 			JOptionPane.showMessageDialog(this, "Partida Guardada");
-		} catch (IOException e) {
+		} catch (Exception e) {
       System.out.println("Error ->"+ e);
 			JOptionPane.showMessageDialog(this, e.getMessage());
 		}
