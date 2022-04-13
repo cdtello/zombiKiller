@@ -2,14 +2,14 @@ package mundo;
 
 import java.io.Serializable;
 
-import Abstract_Factory.ArmaDeFuego;
+
 import Abstract_Factory.ArmaFuegoFactory;
 import Abstract_Factory.ArmaNoFuegoFactory;
 import Abstract_Factory.ArmasFactory;
-import Abstract_Factory.ArmasConcretas.Cuchillo;
-import Abstract_Factory.ArmasConcretas.Granada;
-import interfaz.InterfazZombieKiller;
-import interfaz.PanelPuntajes;
+// ** Abstractas
+import Abstract_Factory.ArmasNoFuego;
+import Abstract_Factory.ArmaDeFuego;
+
 
 public class Personaje implements SerViviente, Serializable {
 
@@ -44,11 +44,11 @@ public class Personaje implements SerViviente, Serializable {
 	/**
 	 * granadas que posee el jugador
 	 */
-	private Granada granadas;
+	private ArmaDeFuego granadas;
 	/**
 	 * cuchillo del personaje, es usado cuando un zombie ataca y no tiene la posibilidad de usar otra arma
 	 */
-	private Cuchillo cuchillo;
+	private ArmasNoFuego cuchillo;
 	/**
 	 * estado temporal que indica que fue herido
 	 */
@@ -56,12 +56,12 @@ public class Personaje implements SerViviente, Serializable {
 	
 	private static Personaje instance;
 
+  private ArmasFactory armasFactory;
 	/**
 	 * Constructor del personaje cada vez que se inicia una partida
 	 * los valores no inicializados tienen por defecto 0
 	 */
 	public Personaje() { 
-    ArmasFactory armasFactory;
 		salud = SALUD;
 		armasFactory = new ArmaFuegoFactory();
 		granadas = armasFactory.createGranada();
@@ -86,7 +86,7 @@ public class Personaje implements SerViviente, Serializable {
 	 * obtiene el cuchillo del personaje
 	 * @return cuchillo 
 	 */
-	public Cuchillo getCuchillo() {
+	public ArmasNoFuego getCuchillo() {
 		return cuchillo;
 	}
 
@@ -94,7 +94,7 @@ public class Personaje implements SerViviente, Serializable {
 	 * obtiene las granadas para verificar su estado y cantidad
 	 * @return granadas
 	 */
-	public Granada getGranadas() {
+	public ArmaDeFuego getGranadas() {
 		return granadas;
 	}
 

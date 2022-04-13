@@ -3,24 +3,15 @@ package mundo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Comparator;
 
-import Abstract_Factory.ArmasConcretas.Cuchillo;
 import Facade.PersistenceFacade;
 import estrategySort.SortBajas;
 import estrategySort.SortHeadshot;
 import estrategySort.SortPuntaje;
 import estrategySort.SortStrategy;
-import interfaz.PanelPuntajes;
 import objectPool.ZombiePool;
 
 public class SurvivorCamp implements Cloneable {
@@ -650,7 +641,7 @@ public class SurvivorCamp implements Cloneable {
 		boolean seEncontro = false;
 		while (!aAcuchillar.getEstadoActual().equals(Zombie.NODO) && !seEncontro) {
 			if (aAcuchillar.getEstadoActual().equals(Zombie.ATACANDO)
-					&& aAcuchillar.comprobarDisparo(x, y, Cuchillo.DANIO)) {
+					&& aAcuchillar.comprobarDisparo(x, y, personaje.getCuchillo().DANIO)) {
 				if (aAcuchillar.getEstadoActual().equals(Zombie.MURIENDO))
 					personaje.aumentarScore(40);
 				seEncontro = true;
@@ -660,7 +651,7 @@ public class SurvivorCamp implements Cloneable {
 			aAcuchillar = aAcuchillar.getAtras();
 		}
 		if (jefe != null) {
-			if (jefe.getEstadoActual().equals(Enemigo.ATACANDO) && jefe.comprobarDisparo(x, y, Cuchillo.DANIO)) {
+			if (jefe.getEstadoActual().equals(Enemigo.ATACANDO) && jefe.comprobarDisparo(x, y, personaje.getCuchillo().DANIO)) {
 				personaje.setEnsangrentado(false);
 				personaje.getCuchillo().setEstado(Arma.CARGANDO);
 				seEncontro = true;
