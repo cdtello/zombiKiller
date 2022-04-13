@@ -99,6 +99,8 @@ public class SurvivorCamp implements Cloneable {
 
   private SortStrategy strategy;
 
+  private NivelDecorator zombieNivel;
+
 	/**
 	 * Constructor de la clase principal del mundo
 	 */
@@ -233,7 +235,7 @@ public class SurvivorCamp implements Cloneable {
 		
 		Zombie aGenerar = zPool.checkOut(level, zombNodoLejano, tipoZombie); 
 	
-    NivelDecorator zombieNivel = new NivelDecorator(aGenerar, level);
+    this.zombieNivel = new NivelDecorator(aGenerar, level);
     Zombie zombie = zombieNivel.getZombie();
 
 		zombie.introducirse(zombNodoLejano.getAlFrente(), zombNodoLejano);
