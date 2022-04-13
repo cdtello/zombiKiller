@@ -186,7 +186,7 @@ public class InterfazZombieKiller extends JFrame {
 			pintando = true;
 		return pintando;
 	}
-
+  
 	/**
 	 * obtiene el puntaje/score actual del personaje
 	 * 
@@ -242,6 +242,8 @@ public class InterfazZombieKiller extends JFrame {
       
       originator.setMemento(new Memento(campo));
       careTaker.add(originator.createMemento());
+
+      
 			campo.guardarPartida();
       // *** *** *** *** ***
 			JOptionPane.showMessageDialog(this, "Partida Guardada");
