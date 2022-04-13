@@ -15,7 +15,6 @@ import Abstract_Factory.ArmaDeFuego;
 import Abstract_Factory.ArmasConcretas.Remington;
 import Memento.CareTaker;
 import Memento.Originator;
-import Memento.SurvivorCampOriginator;
 import hilo.HiloArma;
 import hilo.HiloBoss;
 import hilo.HiloEnemigo;
@@ -108,7 +107,7 @@ public class InterfazZombieKiller extends JFrame {
 		campo = new SurvivorCamp();
 
     careTaker = new CareTaker();
-    originator = new SurvivorCampOriginator(campo);
+    originator = new Originator();
 
 		try {
 			campo.cargarPuntajes();
@@ -202,8 +201,7 @@ public class InterfazZombieKiller extends JFrame {
 		try {
 			Puntaje actuales = campo.getRaizPuntajes();
       //**** memento en esta parte ****
-      originator.getStateFromMemento(careTaker.get(0));
-      originator.getState();
+      originator.setMemento(careTaker.get(0));
 			SurvivorCamp partida = (SurvivorCamp) originator.getState();
       //SurvivorCamp partida = campo.cargarPartida();
       
@@ -240,9 +238,8 @@ public class InterfazZombieKiller extends JFrame {
 		try {
       // *** Guardando Juego ***
       
-      originator.save(campo);
-      careTaker.add(originator.saveStateToMemento());
-
+      originator.setState(campo);
+      careTaker.add(originator.createMemento());
 			campo.guardarPartida();
       // *** *** *** *** ***
 			JOptionPane.showMessageDialog(this, "Partida Guardada");

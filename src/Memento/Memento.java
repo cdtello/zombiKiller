@@ -1,5 +1,20 @@
 package Memento;
 
-public interface Memento {
-  public Object restore();
+import mundo.SurvivorCamp;
+
+public class Memento {
+  
+  private SurvivorCamp state;
+
+  public Memento(SurvivorCamp state){
+    this.state = state;
+  }
+
+  public void SetState(SurvivorCamp state){
+    this.state = state;
+  }
+
+  public SurvivorCamp getState() {
+    return this.state;
+  }
 }
