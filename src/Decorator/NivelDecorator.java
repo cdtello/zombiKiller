@@ -4,12 +4,28 @@ import mundo.Zombie;
 
 public class NivelDecorator extends Decorator{
 
+  private int lentitud[] = {60, 55, 50, 45, 40, 35, 30, 25, 20};
+  private int salud[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
   public NivelDecorator(Zombie zombie, int level) {
     super(zombie);
     agregarSalud(zombie, level);
     agregarVelocidad(zombie, level);
     //TODO Auto-generated constructor stub
   }
+
+  public void agregarSalud(Zombie zombie, int level){
+    zombie.setSalud((byte) (salud[level]));
+  }
+
+  public void agregarVelocidad(Zombie zombie, int level){
+    zombie.setLentitud((short) lentitud[level]);
+  }
+
+  public Zombie getZombie(){
+    return this.zombie;
+  }
+
 
   @Override
   public void terminaDeAtacar() {
@@ -35,16 +51,6 @@ public class NivelDecorator extends Decorator{
     return 0;
   }
 
-  public void agregarSalud(Zombie zombie, int level){
-    zombie.setSalud((byte) (level * 2));
-  }
-
-  public void agregarVelocidad(Zombie zombie, int level){
-    zombie.setLentitud((short) (80/level));
-  }
-
-  public Zombie getZombie(){
-    return this.zombie;
-  }
+  
   
 }

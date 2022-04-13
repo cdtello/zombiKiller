@@ -235,9 +235,11 @@ public class SurvivorCamp implements Cloneable {
 		
 		Zombie aGenerar = zPool.checkOut(level, zombNodoLejano, tipoZombie); 
 	
+
     this.zombieNivel = new NivelDecorator(aGenerar, level);
     Zombie zombie = zombieNivel.getZombie();
 
+    
 		zombie.introducirse(zombNodoLejano.getAlFrente(), zombNodoLejano);
 		cantidadZombiesGenerados++;
 		return zombie;
