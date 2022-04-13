@@ -4,10 +4,13 @@ import Abstract_Factory.ArmasConcretas.Cuchillo;
 
 public class ArmaNoFuegoFactory implements ArmasFactory{
 
+  private Cuchillo cuchillo;
+
 	@Override
 	public ArmasNoFuego createCuchillo() {
-		ArmasNoFuego cuchillo = new Cuchillo();
-		return cuchillo;
+    cuchillo = new Cuchillo();
+		ArmasNoFuego cuchilloA = cuchillo;
+		return cuchilloA;
 	}
 
 	@Override

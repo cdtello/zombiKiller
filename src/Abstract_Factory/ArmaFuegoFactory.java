@@ -6,6 +6,10 @@ import Abstract_Factory.ArmasConcretas.Remington;
 
 public class ArmaFuegoFactory implements ArmasFactory{
 
+  private Granada granada;
+  private M1911 m1911;
+  private Remington remington;
+
 	@Override
 	public ArmasNoFuego createCuchillo() {
 		// TODO Auto-generated method stub
@@ -14,20 +18,23 @@ public class ArmaFuegoFactory implements ArmasFactory{
 
 	@Override
 	public ArmaDeFuego createGranada() {
-		ArmaDeFuego granada = new Granada();
-		return granada;
+    granada = new Granada();
+		ArmaDeFuego granadaA = granada;
+		return granadaA;
 	}
 
 	@Override
 	public ArmaDeFuego createM1911() {
-		ArmaDeFuego m1911 = new M1911();
-		return m1911;
+    m1911 = new M1911();
+		ArmaDeFuego m1911A = m1911;
+		return m1911A;
 	}
 
 	@Override
 	public ArmaDeFuego createRemington() {
-		ArmaDeFuego remington = new Remington();
-		return remington;
+    remington = new Remington();
+		ArmaDeFuego remingtonA = remington;
+		return remingtonA;
 	}
 
 }
