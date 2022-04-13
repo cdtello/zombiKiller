@@ -5,7 +5,11 @@ import mundo.SurvivorCamp;
 public class Originator {
   
   private SurvivorCamp state;
+  private Memento memento;
 
+  public Originator(SurvivorCamp state){
+    this.memento = new Memento(state);
+  }
   public void setState(SurvivorCamp state){
     this.state = state;
   }
@@ -17,9 +21,9 @@ public class Originator {
   public void setMemento(Memento m){
     this.state = m.getState();
   }
-  
+
   public Memento createMemento(){
-    return new Memento(state);
+    return this.memento;
   }
 
 }

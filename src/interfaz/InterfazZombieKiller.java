@@ -107,7 +107,7 @@ public class InterfazZombieKiller extends JFrame {
 		campo = new SurvivorCamp();
 
     careTaker = new CareTaker();
-    originator = new Originator();
+    originator = new Originator(campo);
 
 		try {
 			campo.cargarPuntajes();

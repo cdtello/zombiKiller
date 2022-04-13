@@ -10,10 +10,6 @@ public class Memento {
     this.state = state;
   }
 
-  public void SetState(SurvivorCamp state){
-    this.state = state;
-  }
-
   public SurvivorCamp getState() {
     return this.state;
   }

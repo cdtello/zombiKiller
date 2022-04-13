@@ -1,2 +1,3 @@
 /salud/posX/posY/estado/frame/dirX/dirY
-3_568_144_caminando_2_-2_2
+3_567_284_caminando_23_1_3
+3_449_182_caminando_21_2_2
