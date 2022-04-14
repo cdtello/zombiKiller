@@ -130,7 +130,9 @@ public class PanelPuntajes extends JPanel implements ActionListener {
 	public void generarYAgregarBotones () {
 		JPanel auxBotones = new JPanel();
 		auxBotones.setBackground(Color.black);
-		auxBotones.setLayout(new GridLayout(5, 1));
+		// se comenta la linea 135 y se agrega la 134 para dar orden a los grupos de botones como lo indica el patron de iteracion ButtonGroups
+		auxBotones.setLayout(new FlowLayout());
+		//auxBotones.setLayout(new GridLayout(5, 1));
 		auxBotones.add(butFiltroHeadShot);
 		auxBotones.add(butFiltroBajas);
 		auxBotones.add(butFiltroScore);
