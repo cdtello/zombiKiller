@@ -30,9 +30,10 @@ public class PanelAtributos extends JPanel {
 		Font letra = new Font("Chiller", Font.ITALIC, 34);
 		for (int i = 0; i < valores.length; i++) {
 
-			labAtributos[i] = new JLabel(atributos[i]);
+			labAtributos[i] = new JLabel(atributos[i]+ " ");
 			labAtributos[i].setFont(letra);
 			labAtributos[i].setForeground(Color.white);
+			labAtributos[i].setHorizontalAlignment(JLabel.RIGHT);
 			add(labAtributos[i]);
 
 			barValores[i] = new JProgressBar();
@@ -40,7 +41,7 @@ public class PanelAtributos extends JPanel {
 			barValores[i].setBackground(Color.WHITE);
 			add(barValores[i]);
 			
-			if (atributos[i].equals("Dano"))
+			if (atributos[i].trim().equals("Dano"))
 				barValores[i].setMaximum(Granada.DANIO);
 			else if (atributos[i].equals("Salud"))
 				barValores[i].setMaximum(Boss.SALUD);
