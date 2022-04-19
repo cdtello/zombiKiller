@@ -239,7 +239,6 @@ public class SurvivorCamp implements Cloneable {
     this.zombieNivel = new NivelDecorator(aGenerar, level);
     Zombie zombie = zombieNivel.getZombie();
 
-    
 		zombie.introducirse(zombNodoLejano.getAlFrente(), zombNodoLejano);
 		cantidadZombiesGenerados++;
 		return zombie;
@@ -423,7 +422,7 @@ public class SurvivorCamp implements Cloneable {
 	 * @throws Exception
 	 *             si hay informaci�n inv�lida
 	 */
-	private void cargarDatosCampo(Personaje personaje) throws Exception {
+	public void cargarDatosCampo(Personaje personaje) throws Exception {
 		PersistenceFacade facade = new PersistenceFacade();
 		BufferedReader bR = (BufferedReader) facade.leerZombie();
 		int ronda = 0;
@@ -548,7 +547,7 @@ public class SurvivorCamp implements Cloneable {
 			throw new DatosErroneosException();
 	}
 
-	private String crearDatosZombie(String datos, Zombie actual) {
+	public String crearDatosZombie(String datos, Zombie actual) {
 		if (actual.getEstadoActual().equals(Zombie.NODO))
 			return datos;
 		datos += "\n" + actual.getSalud() + "_" + actual.getPosX() + "_" + actual.getPosY() + "_"

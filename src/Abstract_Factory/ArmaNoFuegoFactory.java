@@ -1,8 +1,9 @@
 package Abstract_Factory;
 
-import Abstract_Factory.ArmasConcretas.Cuchillo;
+import java.io.Serializable;
 
-public class ArmaNoFuegoFactory implements ArmasFactory{
+import Abstract_Factory.ArmasConcretas.Cuchillo;
+public class ArmaNoFuegoFactory implements ArmasFactory, Serializable{
 
   private Cuchillo cuchillo;
 

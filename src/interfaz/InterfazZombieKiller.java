@@ -202,6 +202,7 @@ public class InterfazZombieKiller extends JFrame {
 	public void cargarJuego() {
 		try {
 			Puntaje actuales = campo.getRaizPuntajes();
+      
       //**** memento en esta parte ****
       originator.setMemento(careTaker.get(0));
 			SurvivorCamp partida = (SurvivorCamp) originator.createMemento().getState();
@@ -239,8 +240,8 @@ public class InterfazZombieKiller extends JFrame {
 	public void guardarJuego() {
 		try {
       // *** Guardando Juego ***
-      
-      originator.setMemento(new Memento(campo));
+      Memento memento1 = new Memento(campo);
+      originator.setMemento(memento1);
       careTaker.add(originator.createMemento());
 
       
